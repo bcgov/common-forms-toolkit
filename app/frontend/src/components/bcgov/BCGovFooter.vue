@@ -21,25 +21,25 @@
     <v-btn text id="footer-contact" href="https://www2.gov.bc.ca/gov/content/home/contact-us">
       <span>Contact Us</span>
     </v-btn>
+    <v-spacer />
+    <span class="app-version">v{{ appVersion }}</span>
   </v-footer>
 </template>
 
 <script>
 export default {
-  name: 'BCGovFooter'
+  name: 'BCGovFooter',
+  computed: {
+    appVersion() {
+      return process.env.VUE_APP_VERSION;
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .gov-footer {
-  background-color: #003366 !important;
-  border-top: 2px solid #fcba19;
-  flex-shrink: 0;
-  min-height: 2.5rem;
-  min-width: 100%;
-  padding-bottom: 0;
-  padding-top: 0;
-
+  display: flex !important;
   a {
     color: #ffffff;
     font-size: 1rem;
@@ -48,12 +48,29 @@ export default {
     }
   }
 
-  .v-btn__content > span {
+  .v-btn {
     color: #ffffff;
     font-size: 1rem;
-    font-weight: normal;
     text-decoration: none;
     text-transform: none;
+    span > span {
+      font-weight: normal;
+    }
+  }
+
+  &.v-footer {
+    background-color: #003366;
+    border-top: 2px solid #fcba19;
+    flex-shrink: 0;
+    min-height: 2.5rem;
+    min-width: 100%;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  .app-version {
+    font-size: smaller;
+    color: white;
   }
 }
 </style>

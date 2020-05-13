@@ -5,12 +5,12 @@ import '@/assets/scss/style.scss';
 import axios from 'axios';
 import NProgress from 'nprogress';
 import Vue from 'vue';
+import VueKeycloakJs from '@dsb-norge/vue-keycloak-js';
 
 import App from '@/App.vue';
 import auth from '@/store/modules/auth.js';
 import router from '@/router';
 import store from '@/store';
-import VueKeycloakJs from '@/plugins/keycloak';
 import vuetify from '@/plugins/vuetify';
 
 Vue.config.productionTip = false;
@@ -34,7 +34,7 @@ loadConfig();
  * @param {boolean} kcSuccess is Keycloak initialized successfully?
  */
 function initializeApp(kcSuccess = false) {
-  if (kcSuccess && !store.hasModule('auth')) store.registerModule('auth', auth);
+  if (kcSuccess) store.registerModule('auth', auth);
 
   new Vue({
     router,
@@ -69,6 +69,14 @@ async function loadConfig() {
     if (!config || !config.keycloak ||
       !config.keycloak.clientId || !config.keycloak.realm || !config.keycloak.serverUrl) {
       throw new Error('Keycloak is misconfigured');
+    }
+
+    if (!config || !config.orgbook || !config.orgbook.endpoint) {
+      throw new Error('OrgBook API is misconfigured');
+    }
+
+    if (!config || !config.geocoder || !config.geocoder.endpoint) {
+      throw new Error('Geocoder API is misconfigured');
     }
 
     loadKeycloak(config);

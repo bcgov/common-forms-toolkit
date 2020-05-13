@@ -8,13 +8,45 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
+      redirect: { name: 'Home' }
+    },
+    {
+      path: '/home',
       name: 'Home',
       component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue')
     },
     {
-      path: '/secure',
-      name: 'Secure',
-      component: () => import(/* webpackChunkName: "secure" */ '@/views/Secure.vue'),
+      path: '/admin',
+      component: () => import(/* webpackChunkName: "admin" */ '@/views/Admin.vue'),
+      children: [
+        {
+          path: '',
+          name: 'Admin',
+          component: () => import(/* webpackChunkName: "submission-table" */ '@/views/admin/Root.vue')
+        },
+        {
+          path: 'dashboard',
+          name: 'Dashboard',
+          component: () => import(/* webpackChunkName: "dashboard" */ '@/views/admin/Dashboard.vue'),
+        },
+        {
+          path: 'dev',
+          name: 'Dev',
+          component: () => import(/* webpackChunkName: "dev" */ '@/views/admin/Dev.vue'),
+        },
+        {
+          path: 'submission/:ipcPlanId',
+          name: 'Submission',
+          component: () => import(/* webpackChunkName: "submission" */ '@/views/admin/Submission.vue'),
+          props: true
+        },
+        {
+          path: 'submission/:ipcPlanId/status',
+          name: 'Status',
+          component: () => import(/* webpackChunkName: "status" */ '@/views/admin/Status.vue'),
+          props: true
+        }
+      ],
       meta: {
         requiresAuth: true
       }

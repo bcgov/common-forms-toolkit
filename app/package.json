@@ -1,8 +1,18 @@
 {
   "name": "common-forms-toolkit-app",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
+  "author": "NR Common Service Showcase <NR.CommonServiceShowcase@gov.bc.ca>",
+  "bugs": {
+    "url": "https://github.com/bcgov/common-forms-toolkit-app/issues"
+  },
+  "description": "common-forms-toolkit-app POC",
+  "homepage": "https://github.com/bcgov/common-forms-toolkit-app",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcgov/common-forms-toolkit-app.git"
+  },
   "scripts": {
     "serve": "nodemon ./bin/www",
     "build": "cd frontend && npm run build",
@@ -10,8 +20,12 @@
     "test": "jest --verbose --forceExit --detectOpenHandles --maxWorkers=10",
     "lint": "eslint . **/www --no-fix --ext .js",
     "lint:fix": "eslint . **/www --fix --ext .js",
+    "migrate": "sequelize db:migrate",
+    "migrate:undo": "sequelize db:migrate:undo",
     "pretest": "npm run lint",
     "posttest": "node ./lcov-fix.js",
+    "seed:dev": "sequelize db:seed --seed 20200330000000-dev-users",
+    "seed:dev:undo": "sequelize db:seed:undo --seed 20200330000000-dev-users",
     "clean": "rm -rf coverage dist",
     "purge": "rm -rf node_modules",
     "rebuild": "npm run clean && npm run build",
@@ -21,33 +35,48 @@
     "all:test": "npm run test && cd frontend && npm run test",
     "all:lint": "npm run lint && cd frontend && npm run lint",
     "all:lint-fix": "npm run lint:fix && cd frontend && npm run lint:fix",
-    "all:ci": "npm ci && cd frontend && npm ci",
+    "all:ci": "npm ci --only=production && cd frontend && npm ci",
     "all:install": "npm install && cd frontend && npm install",
     "all:clean": "npm run clean && cd frontend && npm run clean",
     "all:purge": "npm run purge && cd frontend && npm run purge",
     "all:rebuild": "npm run rebuild && cd frontend && npm run rebuild",
     "all:reinstall": "npm run reinstall && cd frontend && npm run reinstall",
     "all:fresh-start": "npm run all:reinstall && npm run all:rebuild && npm run all:start",
-    "frontend:purge": "cd frontend && npm run purge"
+    "frontend:purge": "cd frontend && npm run purge",
+    "k8s:migrate:seed": "node ./migrate-seed.js"
   },
   "dependencies": {
     "api-problem": "6.0.1",
+    "axios-oauth-client": "^1.2.1",
+    "axios-token-interceptor": "^0.2.0",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "config": "^3.3.1",
     "express": "^4.17.1",
+    "express-rate-limit": "^5.1.1",
+    "express-validator": "^6.4.0",
+    "form-data": "^3.0.0",
+    "fs-extra": "^9.0.0",
     "js-yaml": "^3.13.1",
-    "keycloak-connect": "^10.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "keycloak-connect": "^9.0.2",
+    "moment": "^2.24.0",
     "morgan": "^1.10.0",
-    "npmlog": "^4.1.2"
+    "npmlog": "^4.1.2",
+    "pg": "^7.18.2",
+    "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1",
+    "uuid": "^7.0.3",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.18.1",
     "eslint": "^6.8.0",
     "eslint-config-recommended": "^4.0.0",
-    "eslint-plugin-prettier": "^3.1.3",
-    "jest": "^26.0.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^25.2.3",
     "jest-sonar-reporter": "^2.0.0",
-    "nodemon": "^2.0.3",
+    "nodemon": "^2.0.2",
     "supertest": "^4.0.2"
   },
   "jestSonar": {

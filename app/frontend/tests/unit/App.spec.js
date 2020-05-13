@@ -1,21 +1,26 @@
-import { shallowMount } from '@vue/test-utils';
+import { createLocalVue, shallowMount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 
-import Secure from '@/App.vue';
+import router from '@/router';
+import App from '@/App.vue';
 
-describe('Secure.vue', () => {
-  let vuetify;
+const localVue = createLocalVue();
+localVue.use(router);
+localVue.use(Vuetify);
 
-  beforeEach(() => {
-    vuetify = new Vuetify();
-  });
-
+describe('App.vue', () => {
   it('renders', () => {
-    const wrapper = shallowMount(Secure, {
-      vuetify,
-      stubs: ['BaseSecure', 'BCGovFooter', 'BCGovHeader', 'BCGovNavBar', 'router-view']
+    const wrapper = shallowMount(App, {
+      localVue,
+      stubs: [
+        'BCGovHeader',
+        'BCGovNavBar',
+        'BCGovFooter'
+      ]
     });
 
     expect(wrapper.text()).toMatch('');
+    expect(wrapper.html()).toMatch('v-app');
+    expect(wrapper.html()).toMatch('router-view');
   });
 });

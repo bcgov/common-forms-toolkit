@@ -4,7 +4,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import authStore from '@/store/modules/auth';
-import { AppRoles } from '@/utils/constants';
+import { SilvipcRoles } from '@/utils/constants';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -35,7 +35,7 @@ describe('auth getters', () => {
           tokenParsed: {
             realm_access: {},
             resource_access: {
-              app: {
+              silvipc: {
                 roles: roles
               }
             }
@@ -73,32 +73,32 @@ describe('auth getters', () => {
     expect(store.getters.fullName).toMatch('fName');
   });
 
-  it('hasResourceRoles should return false if unauthenticated', () => {
+  it('hasSilvipcRoles should return false if unauthenticated', () => {
     authenticated = false;
 
     expect(store.getters.authenticated).toBeFalsy();
-    expect(store.getters.hasResourceRoles('app', roles)).toBeFalsy();
+    expect(store.getters.hasSilvipcRoles(roles)).toBeFalsy();
   });
 
-  it('hasResourceRoles should return true when checking no roles', () => {
+  it('hasSilvipcRoles should return true when checking no roles', () => {
     authenticated = true;
     roles = [];
 
     expect(store.getters.authenticated).toBeTruthy();
-    expect(store.getters.hasResourceRoles('app', roles)).toBeTruthy();
+    expect(store.getters.hasSilvipcRoles(roles)).toBeTruthy();
   });
 
-  it('hasResourceRoles should return true when role exists', () => {
+  it('hasSilvipcRoles should return true when developer exists', () => {
     authenticated = true;
-    roles = [AppRoles.TESTROLE];
+    roles = [SilvipcRoles.DEVELOPER];
 
     expect(store.getters.authenticated).toBeTruthy();
-    expect(store.getters.hasResourceRoles('app', roles)).toBeTruthy();
+    expect(store.getters.hasSilvipcRoles(roles)).toBeTruthy();
   });
 
-  it('hasResourceRoles should return false when resource does not exist', () => {
+  it('hasSilvipcRoles should return false when resource does not exist', () => {
     authenticated = true;
-    roles = [AppRoles.TESTROLE];
+    roles = [SilvipcRoles.DEVELOPER];
 
     // TODO: Find better way to set up keycloak object mock without deleting first
     delete Vue.prototype.$keycloak;
@@ -116,7 +116,7 @@ describe('auth getters', () => {
     });
 
     expect(store.getters.authenticated).toBeTruthy();
-    expect(store.getters.hasResourceRoles('app', roles)).toBeFalsy();
+    expect(store.getters.hasSilvipcRoles(roles)).toBeFalsy();
   });
 
   it('keycloakReady should return a boolean', () => {

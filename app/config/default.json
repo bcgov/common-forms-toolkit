@@ -1,11 +1,22 @@
 {
+  "db": {
+    "database": "comfort",
+    "host": "localhost"
+  },
   "frontend": {
     "apiPath": "api/v1",
     "basePath" : "/app",
+    "dashboardUrl": "https://metabase-wxpbtr-dev.pathfinder.gov.bc.ca/public/dashboard/57862333-7d2b-4cea-9116-8db60db362a0",
+    "geocoder": {
+      "endpoint": "https://apps.gov.bc.ca/pub/geocoder"
+    },
     "keycloak": {
       "clientId": "comfort-frontend",
       "realm": "cp1qly2d",
       "serverUrl": "https://sso-dev.pathfinder.gov.bc.ca/auth"
+    },
+    "orgbook": {
+      "endpoint": "https://orgbook.gov.bc.ca/api/v2"
     }
   },
   "server": {
@@ -19,7 +30,13 @@
     },
     "logLevel": "debug",
     "morganFormat": "combined",
-    "port": "8080"
+    "port": "8080",
+    "rateLimit" : {
+      "ipc": {
+        "windowMs": "900000",
+        "max": "100"
+      }
+    }
   },
   "serviceClient": {
     "commonServices": {
@@ -29,7 +46,8 @@
       "cdogs": {
         "endpoint": "https://cdogs-master-idcqvl-dev.pathfinder.gov.bc.ca/api"
       },
-      "tokenEndpoint": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/jbd6rnxw/protocol/openid-connect/token"
+      "tokenEndpoint": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/jbd6rnxw/protocol/openid-connect/token",
+      "username": "SILVIPC_SERVICE_CLIENT"
     }
   }
 }

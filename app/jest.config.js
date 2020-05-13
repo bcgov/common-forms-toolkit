@@ -1,7 +1,14 @@
 module.exports = {
   clearMocks: true,
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.js', '!frontend/**/*.*'],
+  collectCoverageFrom: [
+    'src/**/*.js',
+    '!src/docs/*.*',
+    '!src/frontend/**/*.*',
+    '!src/migrations/*.js',
+    '!src/seeders/*.js',
+    '!src/services/*.js'
+  ],
   moduleFileExtensions: ['js', 'json'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
@@ -10,6 +17,6 @@ module.exports = {
     '**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'
   ],
   testPathIgnorePatterns: ['frontend'],
-  testURL: 'http://localhost/',
-
+  testResultsProcessor: 'jest-sonar-reporter',
+  testURL: 'http://localhost/'
 };

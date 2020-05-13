@@ -18,13 +18,14 @@ export default {
     authenticated: () => Vue.prototype.$keycloak.authenticated,
     createLoginUrl: () => options => Vue.prototype.$keycloak.createLoginUrl(options),
     createLogoutUrl: () => options => Vue.prototype.$keycloak.createLogoutUrl(options),
+    email: () => Vue.prototype.$keycloak.tokenParsed.email,
     fullName: () => Vue.prototype.$keycloak.fullName,
-    hasResourceRoles: (_state, getters) => (resource, roles) => {
+    hasSilvipcRoles: (_state, getters) => roles => {
       if (!getters.authenticated) return false;
       if (!roles.length) return true; // No roles to check against
 
-      if (getters.resourceAccess[resource]) {
-        return hasRoles(getters.resourceAccess[resource].roles, roles);
+      if (getters.resourceAccess.silvipc) {
+        return hasRoles(getters.resourceAccess.silvipc.roles, roles);
       }
       return false; // There are roles to check, but nothing in token to check against
     },

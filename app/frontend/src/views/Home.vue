@@ -1,16 +1,15 @@
 <template>
-  <v-container>
-    <h1 class="my-6 text-center">Welcome to Vuetify</h1>
-    <HelloWorld />
-  </v-container>
+  <div>
+    <Form />
+  </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue';
+import Form from '@/components/form/Form.vue';
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Form
   }
 };
 </script>

@@ -1,28 +1,98 @@
-# Common Forms Toolkit Frontend
+# An Interface for Submitting IPC Form Data
 
-This is the Common Forms Toolkit frontend. It implements a Vue frontend with Keycloak authentication support.
+To learn more about the **Common Services** available visit the [Common Services Showcase](https://bcgov.github.io/common-service-showcase/) page.
 
-## Configuration
+The IPC Form application is a web-based tool for businesses to attest to having completed various safety precautions required for managing the threats and effects of the recent COVID-19 epedemic so that their workers can be kept safe.
 
-The Common Forms Toolkit frontend will require some configuration. The API it invokes will be locked down and require a valid JWT Token to access. We will need to configure the application to authenticate using the same Keycloak realm as the [app](../). Note that the Common Forms Toolkit frontend is currently designed to expect all associated resources to be relative to the original access path.
+## Frontend
 
-## Super Quickstart
+The frontend and of the application is built on the [Vue.js](https://vuejs.org/) framework as a static UI layer.
 
-Ensure that you have filled in all the appropriate configurations following [../config/custom-environment-variables.json](../config/custom-environment-variables.json) before proceeding.
+The frontend of the application allows users to complete a multi-page form, review their answers before submitting the data securely in return for a confirmation ID.
+There is also a keycloak protected (IDIR users) administrative interface to review and manage form submisions and perform functions such as exporting to excel, emailing as well as see metrics via Metabase
 
-### Project setup
+### Vue Archetecture
+
+The frontend was built using a boilerplate 'starter app' image developed by the Common Services team.
+
+#### Vuetify
+
+The material design framework Vuetify is used for design and layout. All additional UI elements added should use Veutfify components and material design language. See the [Vuetify docs](https://vuetifyjs.com/en/getting-started/quick-start) for more information. We installed the Vuetify framework by running `vue add Vuetify`.
+
+#### Vuex
+
+The Vuex state management system is an integral part of the frontend application. It maintains a centralized store for all the components in the app. The location of the store in the project structure is `./src/store`. See the [Vuex docs](https://vuex.vuejs.org/) for more information.
+
+Our Vuex store leverages [dynamic module registration](https://vuex.vuejs.org/guide/modules.html#dynamic-module-registration) in order to allow for certain modules to be loaded after store creation. This allows us to start the application sooner, and allows for better code separation in webpack bundling. At this time, the auth module must be loaded after the Keycloak plugin has fully loaded. Other modules may potentially follow this dynamic registration pattern if it makes sense.
+
+#### Vue Router
+
+Vue Router is used for Single Page App routing. See the [Vue Router docs](https://router.vuejs.org/) for more information. We are not using history mode in order to ensure network pathing remains consistent.
+
+### Other Dependencies
+
+Other imported libraries used in the application include:
+
+* [axios](https://www.npmjs.com/package/axios) for REST calls
+* [core-js](https://www.npmjs.com/package/core-js) standard JS library
+* [validator](https://www.npmjs.com/package/validator) library of string validators and sanitizers
+
+See `./package.json` for more.
+
+## Environment Configuration
+
+At the root of this `frontend` directory are environment files that create environment variables that are accessible to the app at build time.
+
+For local development, create a `.env.development.local` file at this location (it will be ignored by Git) to provide local environment variables. This will be invoked when *npm run serve* is used.
+
+See the Vue CLI docs on [Modes and Environment](https://cli.vuejs.org/guide/mode-and-env.html) variables for more information.
+
+## Unit Tests
+
+Unit tests are written in [Jest](https://jestjs.io/).
+
+[Vue Test Utils](https://vue-test-utils.vuejs.org/) is included (scaffolded through Vue CLI) to facilitate unit test writing for the Vue components.
+
+See [Run your unit tests](#run-your-unit-tests) below for details on executing tests.
+
+### Writing Unit Tests
+
+For most components, we will want to be shallow mounting them in order to avoid accidentally testing for behavior across different components. Components which contain children components should be stubbed out where possible.
+
+As our codebase uses [dynamic module registration](https://vuex.vuejs.org/guide/modules.html#dynamic-module-registration), unit tests which need the store will need to one of the following:
+
+1. Instantiate a new vuex store with the appropriate values as part of the constructor
+2. Create an empty vuex store and then register a mocked vuex store module for the specific unit test environment
+
+While both methods effectively achieve the same goal of setting the vuex store mock to be in the right state, we suggest using the second option as it can provide slightly more flexibility with unit testing.
+
+## Project scripts to run locally
+
+All scripts are assuming terminal directory is `./frontend` and npm is installed.
+
+First execute npm install to set up dependencies
 
 ``` sh
 npm install
 ```
 
+### Note on backend setup
+
+Without the backend app API running correctly, the front end will not do much on a local system. This is because it must acquire dynamic configuration settings from it beforehand. See [backend instructions](../README.md) for details on running the api locally
+
+If you are running the frontend in dev mode, it should not use the same port as the backend application. By default, the dev server will run on port 8081.
+
 ### Compiles and hot-reloads for development
+
+Vue CLI provides a hot-reloadable server. Run the command bellow to start it up and any changes to the frontend source will automatically reload.
 
 ``` sh
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
+If you need to build the deliverables you can run the following. This is normally done by the build pipeline.
 
 ``` sh
 npm run build
@@ -31,14 +101,24 @@ npm run build
 ### Run your unit tests
 
 ``` sh
-npm run test:unit
+npm run test
 ```
 
 ### Lints and fixes files
 
+To check linting, run
+
 ``` sh
 npm run lint
 ```
+
+To autofix lint issues, run
+
+``` sh
+npm run lint:fix
+```
+
+Lint configuration can be seen in [./.eslintrc.js](./.eslintrc.js)
 
 ### Customize configuration
 

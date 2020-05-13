@@ -8,16 +8,24 @@
   "frontend": {
     "apiPath": "FRONTEND_APIPATH",
     "basePath": "FRONTEND_BASEPATH",
+    "dashboardUrl": "FRONTEND_DASHBOARDURL",
+    "geocoder": {
+      "endpoint": "FRONTEND_GEOCODER_ENDPOINT"
+    },
     "keycloak": {
       "clientId": "FRONTEND_KC_CLIENTID",
       "realm": "FRONTEND_KC_REALM",
       "serverUrl": "FRONTEND_KC_SERVERURL"
+    },
+    "orgbook": {
+      "endpoint": "FRONTEND_ORGBOOK_ENDPOINT"
     }
   },
   "server": {
     "apiPath": "SERVER_APIPATH",
     "basePath" : "SERVER_BASEPATH",
     "bodyLimit": "SERVER_BODYLIMIT",
+    "emailRecipients": "SERVER_EMAIL_RECIPIENTS",
     "keycloak": {
       "clientId": "SERVER_KC_CLIENTID",
       "clientSecret": "SERVER_KC_CLIENTSECRET",
@@ -26,7 +34,13 @@
     },
     "logLevel": "SERVER_LOGLEVEL",
     "morganFormat": "SERVER_MORGANFORMAT",
-    "port": "SERVER_PORT"
+    "port": "SERVER_PORT",
+    "rateLimit" : {
+      "ipc": {
+        "windowMs": "SERVER_RATELIMIT_IPC_WINDOWMS",
+        "max": "SERVER_RATELIMIT_IPC_MAX"
+      }
+    }
   },
   "serviceClient": {
     "commonServices": {

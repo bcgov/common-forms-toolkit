@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const path = require('path');
 const Problem = require('api-problem');
 
+const db = require('./src/models');
 const keycloak = require('./src/components/keycloak');
 const v1Router = require('./src/routes/v1');
 
@@ -20,13 +21,24 @@ app.use(express.json({ limit: config.get('server.bodyLimit') }));
 app.use(express.urlencoded({ extended: true }));
 
 // Logging Setup
-log.level = 'info';
+log.level = config.get('server.logLevel');
 log.addLevel('debug', 1500, { fg: 'cyan' });
+
+// Print out configuration settings in verbose startup
+log.verbose('Config', JSON.stringify(config));
 
 // Skip if running tests
 if (process.env.NODE_ENV !== 'test') {
   // Add Morgan endpoint logging
   app.use(morgan(config.get('server.morganFormat')));
+
+  // Check database connection and exit if unsuccessful
+  db.sequelize.authenticate()
+    .then(() => log.info('Database connection established'))
+    .catch(err => {
+      log.error(err);
+      shutdown('DBFAIL');
+    });
 }
 
 // Use Keycloak OIDC Middleware
@@ -42,7 +54,7 @@ apiRouter.use('/config', (_req, res, next) => {
   }
 });
 
-// Base API Directory
+// backend API Directory
 apiRouter.get('/api', (_req, res) => {
   if (state.shutdown) {
     throw new Error('Server shutting down');
@@ -62,13 +74,17 @@ app.use(staticFilesPath, express.static(path.join(__dirname, 'frontend/dist')));
 
 // Handle 500
 // eslint-disable-next-line no-unused-vars
-app.use((err, _req, res, _next) => {
+app.use((err, req, res, _next) => {
   if (err.stack) {
     log.error(err.stack);
   }
 
   if (err instanceof Problem) {
     err.send(res, null);
+  } else if (db.isNotFoundError(err)) {
+    new Problem(404, 'Data Not Found', {
+      detail: req.originalUrl
+    }).send(res);
   } else {
     new Problem(500, 'Server Error', {
       detail: (err.message) ? err.message : err
@@ -99,17 +115,18 @@ process.on('unhandledRejection', err => {
 /**
  * @function shutdown
  * Begins shutting down this application. It will hard exit after 3 seconds.
+ * @param {string} signal A signal
  */
-function shutdown() {
+function shutdown(signal) {
   if (!state.shutdown) {
-    log.info('Received kill signal. Shutting down...');
+    log.info(`Received ${signal} signal. Shutting down...`);
     state.shutdown = true;
     // Wait 3 seconds before hard exiting
     setTimeout(() => process.exit(), 3000);
   }
 }
 
-process.on('SIGTERM', shutdown);
-process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown, 'SIGTERM');
+process.on('SIGINT', shutdown, 'SIGINT');
 
 module.exports = app;

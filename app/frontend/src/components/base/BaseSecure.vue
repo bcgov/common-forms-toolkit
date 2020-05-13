@@ -23,7 +23,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { AppRoles } from '@/utils/constants';
+import { SilvipcRoles } from '@/utils/constants';
 
 export default {
   name: 'BaseSecure',
@@ -31,15 +31,16 @@ export default {
     ...mapGetters('auth', [
       'authenticated',
       'createLoginUrl',
-      'hasResourceRoles',
+      'hasSilvipcRoles',
       'keycloakReady'
     ])
   },
   methods: {
     authorized() {
       const roles = [];
-      if (this.testrole) roles.push(AppRoles.TESTROLE);
-      return this.hasResourceRoles('app', roles);
+      if (this.developer) roles.push(SilvipcRoles.DEVELOPER);
+      if (this.inspector) roles.push(SilvipcRoles.INSPECTOR);
+      return this.hasSilvipcRoles(roles);
     },
     login() {
       if (this.keycloakReady) {
@@ -48,7 +49,11 @@ export default {
     }
   },
   props: {
-    testrole: {
+    developer: {
+      default: false,
+      type: Boolean
+    },
+    inspector: {
       default: false,
       type: Boolean
     }

@@ -50,14 +50,6 @@
 <script>
 export default {
   name: 'BaseDialog',
-  methods: {
-    closeDialog() {
-      this.$emit('close-dialog');
-    },
-    continueDialog() {
-      this.$emit('continue-dialog');
-    }
-  },
   props: {
     show: {
       default: false,
@@ -70,6 +62,14 @@ export default {
     width: {
       default: '500',
       type: String
+    }
+  },
+  methods: {
+    closeDialog() {
+      this.$emit('close-dialog');
+    },
+    continueDialog() {
+      this.$emit('continue-dialog');
     }
   }
 };

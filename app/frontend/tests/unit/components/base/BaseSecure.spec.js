@@ -7,26 +7,10 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe('BaseSecure.vue', () => {
-  const { location } = window;
-  const mockReplace = jest.fn(cb => {
-    cb();
-  });
   let store;
 
-  beforeAll(() => {
-    delete window.location;
-    window.location = {
-      replace: mockReplace
-    };
-  });
-
   beforeEach(() => {
-    mockReplace.mockReset();
     store = new Vuex.Store();
-  });
-
-  afterAll(() => {
-    window.location = location;
   });
 
   it('renders nothing if authenticated and authorized', () => {
@@ -34,7 +18,8 @@ describe('BaseSecure.vue', () => {
       namespaced: true,
       getters: {
         authenticated: () => true,
-        hasResourceRoles: () => () => true,
+        createLoginUrl: () => 'test',
+        hasSilvipcRoles: () => () => true,
         keycloakReady: () => true
       }
     });
@@ -49,7 +34,8 @@ describe('BaseSecure.vue', () => {
       namespaced: true,
       getters: {
         authenticated: () => true,
-        hasResourceRoles: () => () => false,
+        createLoginUrl: () => 'test',
+        hasSilvipcRoles: () => () => false,
         keycloakReady: () => true
       }
     });
@@ -71,7 +57,8 @@ describe('BaseSecure.vue', () => {
       namespaced: true,
       getters: {
         authenticated: () => false,
-        hasResourceRoles: () => () => false,
+        createLoginUrl: () => 'test',
+        hasSilvipcRoles: () => () => false,
         keycloakReady: () => true
       }
     });
@@ -86,7 +73,8 @@ describe('BaseSecure.vue', () => {
       namespaced: true,
       getters: {
         authenticated: () => false,
-        hasResourceRoles: () => () => false,
+        createLoginUrl: () => 'test',
+        hasSilvipcRoles: () => () => false,
         keycloakReady: () => false
       }
     });
@@ -94,22 +82,5 @@ describe('BaseSecure.vue', () => {
     const wrapper = shallowMount(BaseSecure, { localVue, store });
 
     expect(wrapper.text()).toMatch('You must be logged in to use this feature.');
-  });
-
-  it('login button redirects to login url', () => {
-    store.registerModule('auth', {
-      namespaced: true,
-      getters: {
-        authenticated: () => false,
-        createLoginUrl: () => () => 'test',
-        keycloakReady: () => true
-      }
-    });
-
-    const wrapper = shallowMount(BaseSecure, { localVue, store });
-    wrapper.vm.login();
-
-    expect(wrapper.text()).toMatch('Login');
-    expect(mockReplace).toHaveBeenCalledTimes(1);
   });
 });
