@@ -10,7 +10,7 @@
       <div class="questions">
         <p
           class="hide-on-review"
-        >Silviculture/planting operators must have a plan and protocol to deal with workers demonstrating symptoms of COVID-19, including immediate self isolation of the worker and notifying the local health authority.</p>
+        >Field Camp operators must have a plan and protocol to deal with workers demonstrating symptoms of COVID-19, including immediate self isolation of the worker and notifying the local health authority.</p>
         <p>
           If two or more workers become sick, you must notify the local
           <a

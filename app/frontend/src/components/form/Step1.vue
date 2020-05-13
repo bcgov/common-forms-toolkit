@@ -3,10 +3,10 @@
     <div class="hide-on-review">
       <h2
         class="mb-8"
-      >Protect silviculture employees, contractors, and employers, during the COVID-19 pandemic</h2>
+      >Protect Field Camp employees, contractors, and employers, during the COVID-19 pandemic</h2>
       <p
         class="mb-8"
-      >The Province of British Columbia has initiated emergency measures to slow the spread of COVID-19. Silviculture and Planting operators must ensure a safe workplace for their workers and demonstrate proof of an Infection Prevention Control protocol (IPCP).</p>
+      >The Province of British Columbia has initiated emergency measures to slow the spread of COVID-19. Field Camp operators must ensure a safe workplace for their workers and demonstrate proof of an Infection Prevention Control protocol (IPCP).</p>
 
       <BaseWarningCard class="my-6">
         <h3>This attestation form must be completed once for each accommodation location.</h3>
@@ -56,7 +56,7 @@
             <v-expansion-panels>
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <strong>Complete a COVID-19 risk assessment of your silviculture camps by following the directions in the guidance document.</strong>
+                  <strong>Complete a COVID-19 risk assessment of your field camps by following the directions in the guidance document.</strong>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <p>
@@ -70,7 +70,7 @@
                     </p>
                     <p
                       class="mb-0"
-                    >Silviculture and Planting operators can take practical actions to reduce the risk of disease transmission (see section 7).</p>
+                    >Field Camp operators can take practical actions to reduce the risk of disease transmission (see section 7).</p>
                   </BaseInfoCard>
 
                   <p class="mt-5">
@@ -168,8 +168,8 @@ export default {
   name: 'Step1',
   data() {
     return {
-      docTitle: 'Protecting Employees, Contractors, and Employers Working in the Silviculture Sector During the COVID-19 Pandemic.',
-      docShortTitle: 'COVID-19 Guidelines for Silviculture Work Camps.'
+      docTitle: 'Protecting Employees, Contractors, and Employers Working in the Field Camp Sector During the COVID-19 Pandemic.',
+      docShortTitle: 'COVID-19 Guidelines for Field Camps.'
     };
   },
   methods: {
