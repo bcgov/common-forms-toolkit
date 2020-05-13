@@ -10,7 +10,7 @@ module.exports = {
             comment: 'Version of form used to populate this plan',
             type: Sequelize.STRING(30),
             unique: false,
-            defaultValue: '1.0.0'
+            defaultValue: '0.0.1'
           },
           { transaction: t })
       ]);
