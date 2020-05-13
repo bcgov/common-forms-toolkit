@@ -119,12 +119,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       unique: false
     },
-    licencees: {
-      allowNull: true,
-      comment: 'Name of licencee(s) (free text)',
-      type: DataTypes.STRING(1000),
-      unique: false
-    },
     numberOfWorkers: {
       allowNull: true,
       comment: 'Number (integer) of workers working at the location',

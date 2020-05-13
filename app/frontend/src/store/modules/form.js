@@ -36,7 +36,6 @@ export default {
       email: ''
     },
     location: {
-      licencees: '',
       startDate: '',
       endDate: '',
       addressLine1: '',
