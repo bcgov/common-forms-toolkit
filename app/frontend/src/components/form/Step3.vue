@@ -15,7 +15,7 @@
       <div class="questions">
         <p
           class="hide-on-review"
-        >Field Camp operators need to make workers aware of the risks of COVID-19 and be prepared if workers have questions about COVID-19.</p>
+        >Industrial Camp Operators need to make workers aware of the risks of COVID-19 and be prepared if workers have questions about COVID-19.</p>
 
         <v-checkbox
           v-model="protectionSignage"
@@ -36,7 +36,7 @@
       <div class="questions">
         <p
           class="hide-on-review"
-        >Field Camp operators must be able to provide accommodations that minimize crowding, social interactions, and provide sufficient physical distance (individual tents or beds 2m apart and head-to-toe in shared accommodations).</p>
+        >Industrial Camp Operators must be able to provide accommodations that minimize crowding, social interactions, and provide sufficient physical distance (individual tents or beds 2m apart and head-to-toe in shared accommodations).</p>
 
         <p>1) Do your Common areas allow for physical distancing of 2m / 6ft at all times?</p>
         <div class="pl-4">
@@ -137,7 +137,7 @@
       <div class="questions">
         <p
           class="hide-on-review"
-        >Helping workers to engage in hand hygiene prevents or reduces the spread of COVID-19 and other illnesses. Field Camp operators should ensure easy access to hand hygiene facilities either through hand hygiene stations or the provisions of hand sanitizer at the work site and at the accommodation site.</p>
+        >Helping workers to engage in hand hygiene prevents or reduces the spread of COVID-19 and other illnesses. Industrial Camp Operators should ensure easy access to hand hygiene facilities either through hand hygiene stations or the provisions of hand sanitizer at the work site and at the accommodation site.</p>
         <v-checkbox
           v-model="handWashingStations"
           :readonly="reviewMode"
@@ -170,7 +170,7 @@
       <h3 class="question-head">7. Physical Distancing Practices</h3>
       <div class="questions">
         <div class="hide-on-review">
-          <p>Keeping a 2 meter distance between people is one of the most important ways to break the chain of transmission of COVID-19. Field Camp operators can take practical steps to ensure physical distancing is maintained while workers are transported to or from the work site, while working indoors or outdoors, during break times.</p>
+          <p>Keeping a 2 meter distance between people is one of the most important ways to break the chain of transmission of COVID-19. Industrial Camps Operators can take practical steps to ensure physical distancing is maintained while workers are transported to or from the work site, while working indoors or outdoors, during break times.</p>
           <p>Physical barriers such as the use of plexi-glass, face shields, masks, and other techniques can be used where physical distancing is not possible.</p>
         </div>
         <v-checkbox

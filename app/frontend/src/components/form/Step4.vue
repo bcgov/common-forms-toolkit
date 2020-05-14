@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="hide-on-review">
-      <h2 class="pb-8">After workers arrive at the Field Camp</h2>
+      <h2 class="pb-8">After workers arrive at the Industrial Camp</h2>
       <hr class="orange" />
     </div>
 
@@ -12,7 +12,7 @@
       <div class="questions">
         <p
           class="hide-on-review"
-        >Field Camp operators need to make workers aware of the risks of COVID-19 and be prepared if workers have questions about COVID-19</p>
+        >Industrial Camps Operators need to make workers aware of the risks of COVID-19 and be prepared if workers have questions about COVID-19</p>
         <v-checkbox
           v-model="educationSignage"
           :readonly="reviewMode"
@@ -31,7 +31,7 @@
       <div class="questions">
         <p
           class="hide-on-review"
-        >Field Camp operators must provide workers with training in their language about the risk of COVID-19, safe work practices, and how to report symptoms.</p>
+        >Industrial Camp Operators must provide workers with training in their language about the risk of COVID-19, safe work practices, and how to report symptoms.</p>
         <v-checkbox
           v-model="trainingCovid19"
           :readonly="reviewMode"
