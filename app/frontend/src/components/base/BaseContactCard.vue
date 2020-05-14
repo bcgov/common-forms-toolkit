@@ -31,6 +31,10 @@
       color: white !important;
       margin-right: 0.5em;
     }
+    a, a:hover, a:active {
+      color: white;
+      text-decoration: underline;
+    }
   }
 }
 </style>
