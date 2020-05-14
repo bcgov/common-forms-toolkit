@@ -1,10 +1,15 @@
 {
+  "db": {
+    "database": "comfort",
+    "host": "localhost",
+    "username": "app"
+  },
   "frontend": {
     "apiPath": "api/v1",
     "basePath" : "/app",
     "keycloak": {
-      "clientId": "getok-frontend",
-      "realm": "vehizw2t",
+      "clientId": "comfort-frontend",
+      "realm": "cp1qly2d",
       "serverUrl": "https://sso-dev.pathfinder.gov.bc.ca/auth"
     }
   },
@@ -13,8 +18,8 @@
     "basePath" : "/app",
     "bodyLimit": "30mb",
     "keycloak": {
-      "clientId": "getok",
-      "realm": "vehizw2t",
+      "clientId": "comfort",
+      "realm": "cp1qly2d",
       "serverUrl": "https://sso-dev.pathfinder.gov.bc.ca/auth"
     },
     "logLevel": "debug",
