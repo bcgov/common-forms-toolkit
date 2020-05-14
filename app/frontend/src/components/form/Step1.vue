@@ -136,11 +136,10 @@
         <li>The Province of BC will use the information you provide through this online form for the site inspection that determines your compliance with the COVID-19 Industrial Camps Provincial Health Order.</li>
       </ul>
 
-      <BaseWarningCard class="my-6">
+      <BaseWarningCard class="my-10">
         <h3>If you fail to comply with these requirements, the Provincial Health Officer order enables the authority to take enforcement action against you under Part 4, Division 6 of the Public Health Act.</h3>
       </BaseWarningCard>
 
-      <hr />
       <v-btn color="primary" @click="setStep(2)">Go to Step 2</v-btn>
     </div>
   </v-container>
@@ -153,8 +152,8 @@ export default {
   name: 'Step1',
   data() {
     return {
-      docTitle: 'Protecting Workers, Contractors, and Employers Working in the Natural Resource Sector During the COVID-19 Pandemic.',
-      docShortTitle: 'COVID-19 Guidelines for Natural Resource Sector.'
+      docTitle: 'Protecting Workers, Contractors, and Employers Working in the Natural Resource Sector During the COVID-19 Pandemic',
+      docShortTitle: 'COVID-19 Guidelines for Natural Resource Sector'
     };
   },
   methods: {

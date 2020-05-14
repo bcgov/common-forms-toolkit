@@ -36,6 +36,7 @@ export default {
       email: ''
     },
     location: {
+      mineNumber: '',
       startDate: '',
       endDate: '',
       addressLine1: '',

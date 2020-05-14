@@ -119,6 +119,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       unique: false
     },
+    mineNumber: {
+      allowNull: true,
+      comment: 'Mines Act Permit or Mine Number',
+      type: DataTypes.STRING(255),
+      unique: false
+    },
     numberOfWorkers: {
       allowNull: true,
       comment: 'Number (integer) of workers working at the location',

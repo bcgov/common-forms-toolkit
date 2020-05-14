@@ -398,6 +398,20 @@
           label="Worker's home in community"
         ></v-checkbox>
       </v-container>
+
+      <div class="hide-on-review">
+        <h2 class="pb-8 mt-8">Mine Information</h2>
+        <hr class="orange" />
+      </div>
+
+      <v-container>
+        <v-row>
+          <v-col cols="12" lg="10">
+            <label>Mines Act Permit or Mine Number</label>
+            <v-text-field dense flat outlined solo v-model="mineNumber" :rules="mineNumberRules" />
+          </v-col>
+        </v-row>
+      </v-container>
     </v-form>
 
     <div class="hide-on-review">
@@ -491,6 +505,10 @@ export default {
       ],
 
       // Location
+      mineNumberRules: [
+        v => !!v || 'Mine Act Permit or Mine Number is required',
+        v => (v && v.length <= 255) || 'Number must be less than 255 characters',
+      ],
       startDateRules: [
         v => !!v || 'Start date is required'
       ],
@@ -582,6 +600,10 @@ export default {
     },
 
     // Location
+    mineNumber: {
+      get() { return this.location.mineNumber; },
+      set(value) { this.updateLocation({['mineNumber']: value}); }
+    },
     startDate: {
       get() { return this.location.startDate; },
       set(value) { this.updateLocation({['startDate']: value}); }
