@@ -1,5 +1,5 @@
 import ipcService from '../../services/ipcService';
-import { default as sampleData } from './sampleData.js';
+import { SampleData, RandomCities } from './sampleData.js';
 
 export default {
   namespaced: true,
@@ -212,10 +212,13 @@ export default {
       }
     },
     async sampleData({ commit }) {
-      commit('updateBusiness', sampleData.business);
-      commit('updateContacts', sampleData.contact);
-      commit('updateCovidContact', sampleData.covidContact);
-      commit('updateLocation', sampleData.location);
+      commit('updateBusiness', SampleData.business);
+      commit('updateContacts', SampleData.contact);
+      commit('updateCovidContact', SampleData.covidContact);
+      const l = SampleData.location;
+      l.city = RandomCities[Math.floor(Math.random() * RandomCities.length)];
+      console.log(JSON.stringify(l));
+      commit('updateLocation', l);
     }
   }
 };
