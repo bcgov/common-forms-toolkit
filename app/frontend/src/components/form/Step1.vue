@@ -35,7 +35,7 @@
           </h4>
           <p>
             <a
-              href="https://www2.gov.bc.ca/assets/gov/health/about-bc-s-health-care-system/office-of-the-provincial-health-officer/covid-19/covid-19-pho-guidance-work-camps-silviculture.pdf"
+              href="https://www2.gov.bc.ca/assets/gov/health/about-bc-s-health-care-system/office-of-the-provincial-health-officer/covid-19/covid-19-pho-guidance-natural-resource-sector-work-camps.pdf"
               target="_blank"
             >Download PDF</a>
           </p>

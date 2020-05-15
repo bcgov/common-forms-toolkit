@@ -333,7 +333,7 @@
           </v-col>
         </v-row>
 
-        <h4>Type of accommodation for planters at this location (check all that apply)</h4>
+        <h4>Type of accommodation for workers at this location (check all that apply)</h4>
 
         <v-checkbox v-model="accTents" :readonly="reviewMode" label="Tents near worksite"></v-checkbox>
 
