@@ -1,4 +1,5 @@
 import ipcService from '../../services/ipcService';
+import { default as sampleData } from './sampleData.js';
 
 export default {
   namespaced: true,
@@ -212,6 +213,12 @@ export default {
       } finally {
         commit('setSubmitting', false);
       }
+    },
+    async sampleData({ commit }) {
+      commit('updateBusiness', sampleData.business);
+      commit('updateContacts', sampleData.contact);
+      commit('updateCovidContact', sampleData.covidContact);
+      commit('updateLocation', sampleData.location);
     }
   }
 };

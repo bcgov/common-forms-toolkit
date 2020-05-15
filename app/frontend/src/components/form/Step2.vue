@@ -1,6 +1,12 @@
 <template>
   <v-container>
     <div class="hide-on-review">
+      <v-btn
+        class="mb-5"
+        outlined
+        color="primary"
+        @click="sampleData"
+      >FOR TEST ONLY - FILL SAMPLE DATA</v-btn>
       <h2 class="pb-8">Provide your business contact information</h2>
       <hr class="orange" />
     </div>
@@ -292,9 +298,9 @@
             <label>Closest Community / Town / City</label>
             <CityLookup
               v-if="!reviewMode"
-              :city-field-model.sync="locationCity"
-              :city-latitude-field-model.sync="cityLatitude"
-              :city-longitude-field-model.sync="cityLongitude"
+              :field-model.sync="locationCity"
+              :latitude.sync="cityLatitude"
+              :longitude.sync="cityLongitude"
               :field-rules="locationCityRules"
             />
             <v-text-field
@@ -425,7 +431,7 @@
 
 <script>
 import validator from 'validator';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 import CityLookup from '@/components/form/CityLookup.vue';
 import OrgBookSearch from '@/components/form/OrgBookSearch.vue';
@@ -672,6 +678,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions('form', ['sampleData']),
     ...mapMutations('form', ['setStep', 'updateBusiness', 'updateContacts', 'updateCovidContact', 'updateIpcPlan', 'updateLocation']),
     async submit() {
       if(this.$refs.form.validate()) {

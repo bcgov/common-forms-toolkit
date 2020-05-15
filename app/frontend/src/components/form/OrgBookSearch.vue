@@ -5,7 +5,7 @@
       outlined
       flat
       solo
-      v-model="model"
+      v-model="fieldModel"
       :rules="rules"
       :items="items"
       :loading="isLoading"
@@ -48,7 +48,6 @@ export default {
       isLoading: false,
       entries: [],
       search: null,
-      model: this.fieldModel,
       rules: this.fieldRules,
       showOrgBookHelp: false,
     };

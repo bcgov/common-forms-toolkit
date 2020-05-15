@@ -4,7 +4,7 @@
     outlined
     flat
     solo
-    v-model="model"
+    v-model="fieldModel"
     :rules="rules"
     :items="items"
     :loading="isLoading"
@@ -34,7 +34,6 @@ export default {
       isLoading: false,
       features: [],
       search: null,
-      model: this.fieldModel,
       rules: this.fieldRules,
     };
   },
@@ -83,8 +82,8 @@ export default {
         return Object.assign({
           text: feature.properties.fullAddress,
           value: feature.properties.fullAddress,
-          cityLatitude: feature.geometry.coordinates[0],
-          cityLongitude: feature.geometry.coordinates[1]
+          cityLatitude: feature.geometry.coordinates[1],
+          cityLongitude: feature.geometry.coordinates[0]
         });
       });
     },
@@ -100,16 +99,16 @@ export default {
   methods: {
     change: function (value) {
       this.$emit(
-        'update:city-field-model',
+        'update:field-model',
         typeof value === 'object' && value !== null ? value.text : value
       );
       this.$emit(
-        'update:city-latitude-field-model',
+        'update:latitude',
         typeof value === 'object' && value !== null ? value.cityLatitude : null
       );
 
       this.$emit(
-        'update:city-longitude-field-model',
+        'update:longitude',
         typeof value === 'object' && value !== null ? value.cityLongitude : null
       );
     },
