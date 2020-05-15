@@ -413,13 +413,12 @@
       <v-container>
         <h4>Please enter your mine identifier(s)</h4>
         <v-row>
-          <v-col cols="12" lg="10">
+          <v-col cols="12" md="5">
             <label>Mine Number</label>
             <v-text-field dense flat outlined solo v-model="mineNumber" :rules="mineNumberRules" />
           </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" lg="10">
+          <v-col cols="12" md="1" class="text-md-center pb-5 pb-md-0">or</v-col>
+          <v-col cols="12" md="5">
             <label>Mines Act Permit</label>
             <v-text-field dense flat outlined solo />
           </v-col>
