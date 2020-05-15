@@ -24,8 +24,8 @@ export default {
       if (!getters.authenticated) return false;
       if (!roles.length) return true; // No roles to check against
 
-      if (getters.resourceAccess.silvipc) {
-        return hasRoles(getters.resourceAccess.silvipc.roles, roles);
+      if (getters.resourceAccess.comfort) {
+        return hasRoles(getters.resourceAccess.comfort.roles, roles);
       }
       return false; // There are roles to check, but nothing in token to check against
     },

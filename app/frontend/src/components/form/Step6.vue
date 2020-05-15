@@ -198,7 +198,7 @@
         <v-checkbox
           :rules="[v => !!v || 'You must agree to continue']"
           v-model="agreeToInspection"
-          label="I agree that my planting camps will be subject to a site inspection"
+          label="I agree that my Industrial Camps will be subject to a site inspection"
         ></v-checkbox>
       </v-form>
     </div>

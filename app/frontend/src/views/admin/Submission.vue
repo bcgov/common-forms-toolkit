@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     ...mapGetters('form', ['business', 'location', 'gettingForm', 'getFormError', 'ipcPlan']),
-    ...mapGetters('auth', ['hasSilvipcRoles']),
+    ...mapGetters('auth', ['hasSilvipcRoles', 'token']),
     createdAtDisplay() { return this.ipcPlan && this.ipcPlan.createdAt ? moment(this.ipcPlan.createdAt).format('MMMM D YYYY, h:mm:ss a') : 'N/A'; },
     showInspection() {
       return this.hasSilvipcRoles([SilvipcRoles.INSPECTOR]);

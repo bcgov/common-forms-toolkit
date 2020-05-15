@@ -31,7 +31,7 @@
         <v-checkbox
           readonly
           v-model="agreeToInspection"
-          label="I agree that my planting camps will be subject to a site inspection"
+          label="I agree that my industiral camps will be subject to a site inspection"
         ></v-checkbox>
       </div>
     </v-card>
