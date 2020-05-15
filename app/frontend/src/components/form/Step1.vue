@@ -70,7 +70,7 @@
                     </p>
                     <p
                       class="mb-0"
-                    >Industrial Camps Operators can take practical actions to reduce the risk of disease transmission (see section 7).</p>
+                    >Industrial Camps Operators can take practical actions to reduce the risk of disease transmission (see section 7 of document).</p>
                   </BaseInfoCard>
 
                   <p class="mt-5">
