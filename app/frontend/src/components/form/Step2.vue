@@ -411,10 +411,17 @@
       </div>
 
       <v-container>
+        <h4>Please enter one of your mine identifiers</h4>
         <v-row>
           <v-col cols="12" lg="10">
-            <label>Mines Act Permit or Mine Number</label>
+            <label>Mine Number</label>
             <v-text-field dense flat outlined solo v-model="mineNumber" :rules="mineNumberRules" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" lg="10">
+            <label>Mines Act Permit</label>
+            <v-text-field dense flat outlined solo />
           </v-col>
         </v-row>
       </v-container>
