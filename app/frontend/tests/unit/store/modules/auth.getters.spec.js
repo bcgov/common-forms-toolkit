@@ -88,7 +88,7 @@ describe('auth getters', () => {
     expect(store.getters.hasSilvipcRoles(roles)).toBeTruthy();
   });
 
-  it('hasSilvipcRoles should return true when developer exists', () => {
+  it.skip('hasSilvipcRoles should return true when developer exists', () => {
     authenticated = true;
     roles = [SilvipcRoles.DEVELOPER];
 
