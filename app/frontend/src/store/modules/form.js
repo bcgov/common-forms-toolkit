@@ -217,7 +217,6 @@ export default {
       commit('updateCovidContact', SampleData.covidContact);
       const l = SampleData.location;
       l.city = RandomCities[Math.floor(Math.random() * RandomCities.length)];
-      console.log(JSON.stringify(l));
       commit('updateLocation', l);
     }
   }
