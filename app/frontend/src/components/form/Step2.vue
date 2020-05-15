@@ -7,7 +7,7 @@
         color="primary"
         @click="sampleData"
       >FOR TEST ONLY - FILL SAMPLE DATA</v-btn>
-      <h2 class="pb-8">Provide your business contact information</h2>
+      <h2 class="pb-8">Provide Your Business Contact Information</h2>
       <hr class="orange" />
     </div>
 
@@ -406,12 +406,12 @@
       </v-container>
 
       <div class="hide-on-review">
-        <h2 class="pb-8 mt-8">Mine Information</h2>
+        <h2 class="pb-8 mt-8">Authorization Information</h2>
         <hr class="orange" />
       </div>
 
       <v-container>
-        <h4>Please enter one of your mine identifiers</h4>
+        <h4>Please enter your mine identifier(s)</h4>
         <v-row>
           <v-col cols="12" lg="10">
             <label>Mine Number</label>
