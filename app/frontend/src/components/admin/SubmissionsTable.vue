@@ -62,6 +62,7 @@ export default {
       search: '',
       headers: [
         { text: 'Submitted', value: 'created' },
+        { text: 'Status', align: 'start', value: 'inspectionStatus' },
         { text: 'Business Name', align: 'start', value: 'name' },
         { text: 'Confirmation ID', align: 'start', value: 'confirmationId' },
         { text: 'Download', value: 'download', sortable: false },
@@ -111,6 +112,7 @@ export default {
               name: submission.business.name,
               created: this.formatDate(submission.ipcPlan.createdAt),
               confirmationId: submission.confirmationId,
+              inspectionStatus: submission.inspectionStatuses[0].status
             };
           });
           if (!submissions.length) {
