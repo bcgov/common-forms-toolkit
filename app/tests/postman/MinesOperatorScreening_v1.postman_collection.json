@@ -94,7 +94,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/current",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/current",
 					"host": [
 						"{{host}}"
 					],
@@ -147,7 +147,7 @@
 					"raw": "{\n\t\"attestation\": {\n\t\t\"guidelinesRead\": true,\n\t\t\"assessmentCompleted\": true,\n\t\t\"developedPlan\": true,\n\t\t\"protectionSignage\": true,\n\t\t\"workerContactPersonnel\": true,\n\t\t\"commonAreaDistancing\": true,\n\t\t\"sleepingAreaType\": \"SHARED\",\n\t\t\"sharedSleepingPerRoom\": 7,\n\t\t\"sharedSleepingDistancing\": true,\n\t\t\"selfIsolateUnderstood\": true,\n\t\t\"selfIsolateAccommodation\": true,\n\t\t\"laundryServices\": true,\n\t\t\"wasteManagementGloves\": true,\n\t\t\"wasteManagementSchedule\": true,\n\t\t\"wasteManagementBags\": true,\n\t\t\"handWashingStations\": true,\n\t\t\"handWashingSoapWater\": true,\n\t\t\"handWashingWaterless\": true,\n\t\t\"handWashingPaperTowels\": true,\n\t\t\"handWashingSignage\": true,\n\t\t\"distancingMaintained\": true,\n\t\t\"distancingFaceShields\": true,\n\t\t\"disinfectingSchedule\": true,\n\t\t\"educationSignage\": true,\n\t\t\"educationContactPersonnel\": true,\n\t\t\"trainingCovid19\": true,\n\t\t\"trainingEtiquette\": true,\n\t\t\"trainingLocations\": true,\n\t\t\"trainingFirstAid\": true,\n\t\t\"trainingReporting\": true,\n\t\t\"mealsDistancing\": true,\n\t\t\"mealsDishware\": true,\n\t\t\"mealsDishwashing\": true,\n\t\t\"infectionSeparation\": true,\n\t\t\"infectionSymptoms\": true,\n\t\t\"infectionHeathLinkBC\": true,\n\t\t\"infectionSanitization\": true,\n\t\t\"infectionAccommodation\": true,\n\t\t\"infectedFeeding\": true,\n\t\t\"infectedHousekeeping\": true,\n\t\t\"infectedWaste\": true,\n\t\t\"certifyAccurateInformation\": true,\n\t\t\"agreeToInspection\": true,\n\t\t\"transportationSingleOccupant\": true,\n\t\t\"transportationBusesVans\": true,\n\t\t\"transportationTrucksCars\": true,\n\t\t\"transportationHelicopter\": true,\n\t\t\"transportationTravelPod\": true,\n\t\t\"transportationCleaningDistancing\": true\n\t},\n\t\"business\": {\n\t\t\"name\": \"Rad Biz\",\n\t\t\"orgBookId\": null,\n\t\t\"addressLine1\": \"1234 Here St\",\n\t\t\"addressLine2\": null,\n\t\t\"city\": \"Saanich\",\n\t\t\"province\": \"BC\",\n\t\t\"postalCode\": \"ABCDEF\"\t\n\t},\n\t\"contacts\":[\n\t\t{\n\t\t\t\"contactType\": \"PRIMARY\",\n\t\t\t\"firstName\": \"Jane\",\n\t\t\t\"lastName\": \"Doe\",\n\t\t\t\"phone1\": \"1234567890\",\n\t\t\t\"phone2\": \"\",\n\t\t\t\"email\": \"jane@doe.com\"\n\t\t},\n\t    {\t\t\t\n\t\t\t\"contactType\": \"COVID_COORDINATOR\",\n\t\t\t\"firstName\": \"John\",\n\t\t\t\"lastName\": \"D'oh\",\n\t\t\t\"phone1\": \"0987654321\",\n\t\t\t\"phone2\": \"\",\n\t\t\t\"email\": \"john@doh.com\"\n\t\t}\n\t],\n\t\"location\": {\n\t\t\"startDate\": \"2020-05-10\",\n\t\t\"endDate\": \"2020-07-30\",\n\t\t\"city\": \"Victoria, BC\",\n\t\t\"cityLatitude\": null,\n\t\t\"cityLongitude\": null,\n\t\t\"mineNumber\": \"\",\n\t\t\"permitNumber\": \"\",\n\t\t\"numberOfWorkers\": 10,\n\t\t\"accTents\": false,\n\t\t\"tentDetails\": \"\",\n\t\t\"accMotel\": false,\n\t\t\"motelName\": \"\",\n\t\t\"motelAddressLine1\": \"\",\n\t\t\"motelAddressLine2\": \"\",\n\t\t\"motelCity\": \"\",\n\t\t\"motelProvince\": \"\",\n\t\t\"motelPostalCode\": \"\",\n\t\t\"accWorkersHome\": false\n\t}\n}"
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions",
 					"host": [
 						"{{host}}"
 					],
@@ -190,7 +190,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions/{{submissionId}}",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions/{{submissionId}}",
 					"host": [
 						"{{host}}"
 					],
@@ -238,7 +238,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions?version={{formVersionId}}&city=Vic&business=Rad&confirmationId={{confirmationId}}",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions?version={{formVersionId}}&city=Vic&business=Rad&confirmationId={{confirmationId}}",
 					"host": [
 						"{{host}}"
 					],
@@ -313,7 +313,7 @@
 					"raw": "{\n\t\"code\": \"ASSIGNED\",\n\t\"assignedTo\": \"Jason Sherman\",\n\t\"assignedToEmail\": \"jsherman@parcsystems.ca\",\n\t\"notes\": [\n\t\t{\n\t\t\t\"note\": \"a note added to status in one call\"\n\t\t}\n\t]\n}"
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions/{{submissionId}}/statuses",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions/{{submissionId}}/statuses",
 					"host": [
 						"{{host}}"
 					],
@@ -375,7 +375,7 @@
 					"raw": "{\n\t\"code\": \"ASSIGNED\",\n\t\"assignedTo\": \"ME!\",\n\t\"notes\": [{\"note\": \"voila!\"}]\n}"
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions/{{submissionId}}/statuses",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions/{{submissionId}}/statuses",
 					"host": [
 						"{{host}}"
 					],
@@ -432,7 +432,7 @@
 					"raw": "{\n\t\"note\": \"this note is for the submission\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions/{{submissionId}}/notes",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions/{{submissionId}}/notes",
 					"host": [
 						"{{host}}"
 					],
@@ -498,7 +498,7 @@
 					"raw": "{\n\t\"note\": \"this note is for the submission\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions/{{submissionId}}/notes",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions/{{submissionId}}/notes",
 					"host": [
 						"{{host}}"
 					],
@@ -567,7 +567,7 @@
 					"raw": "{\n\t\"note\": \"adding note to submission status\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions/{{submissionId}}/statuses/{{submissionStatusId}}/notes",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions/{{submissionId}}/statuses/{{submissionStatusId}}/notes",
 					"host": [
 						"{{host}}"
 					],
@@ -635,7 +635,7 @@
 					"raw": "{\n\t\"code\": \"ASSIGNED\",\n\t\"assignedTo\": \"ME!\",\n\t\"notes\": [{\"note\": \"voila!\"}]\n}"
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions/{{submissionId}}/statuses/{{submissionStatusId}}/notes",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions/{{submissionId}}/statuses/{{submissionStatusId}}/notes",
 					"host": [
 						"{{host}}"
 					],
@@ -692,7 +692,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/current/statusCodes",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/current/statusCodes",
 					"host": [
 						"{{host}}"
 					],
@@ -751,7 +751,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/current/statusCodes",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/current/statusCodes",
 					"host": [
 						"{{host}}"
 					],
@@ -826,7 +826,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/submissions/{{submissionId}}",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/submissions/{{submissionId}}",
 					"host": [
 						"{{host}}"
 					],
@@ -906,7 +906,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/current",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/current",
 					"host": [
 						"{{host}}"
 					],
@@ -953,7 +953,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/settings",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/settings",
 					"host": [
 						"{{host}}"
 					],
@@ -999,7 +999,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/settings/notificationEmail",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/settings/notificationEmail",
 					"host": [
 						"{{host}}"
 					],
@@ -1068,7 +1068,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/{{path}}/api/v1/minesattestations/settings/notificationEmail",
+					"raw": "{{host}}/{{path}}/api/v1/minesoperatorscreening/settings/notificationEmail",
 					"host": [
 						"{{host}}"
 					],
@@ -1226,13 +1226,13 @@
 		{
 			"id": "1d4f172a-076e-48f6-8164-280d48143c6c",
 			"key": "notificationEmail",
-			"value": "{\"name\":\"notificationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesattestations/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-007\",\"createdAt\":\"2020-05-20T15:24:34.959Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-05-20T15:26:42.041Z\"}",
+			"value": "{\"name\":\"notificationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-007\",\"createdAt\":\"2020-05-20T15:24:34.959Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-05-20T15:26:42.041Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "7d2c58b8-3630-4450-8c51-47699a7dfa15",
 			"key": "changedNotificationEmail",
-			"value": "{\"name\":\"notificationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesattestations/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-007\",\"createdAt\":\"2020-05-20T15:24:34.959Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-05-20T15:26:42.041Z\"}",
+			"value": "{\"name\":\"notificationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-007\",\"createdAt\":\"2020-05-20T15:24:34.959Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-05-20T15:26:42.041Z\"}",
 			"type": "string"
 		}
 	],

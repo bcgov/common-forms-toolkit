@@ -1,4 +1,4 @@
-const PREFIX = require('../../forms/minesattestations/constants').PREFIX;
+const PREFIX = require('../../forms/minesoperatorscreening/constants').PREFIX;
 
 exports.up = function(knex) {
   return knex(`${PREFIX}_settings`).del()
@@ -15,7 +15,7 @@ exports.up = function(knex) {
           messageLinkText: 'Click to view your Receipt',
           messageLinkUrl: 'https://comfort-dev.pathfinder.gov.bc.ca/app/minesattestations/review'
         },
-        createdBy: 'migration-007'
+        createdBy: 'migration-006'
       };
       return knex(`${PREFIX}_settings`).insert(data);
     })
@@ -33,7 +33,7 @@ exports.up = function(knex) {
           messageLinkText: 'Please login to view the details of this Industrial Camps Attestation',
           messageLinkUrl: 'https://comfort-dev.pathfinder.gov.bc.ca/app/minesattestations/admin/submission'
         },
-        createdBy: 'migration-007'
+        createdBy: 'migration-006'
       };
       return knex(`${PREFIX}_settings`).insert(data);
     })
@@ -51,7 +51,19 @@ exports.up = function(knex) {
           messageLinkText: 'Please login to view the details of this Industrial Camps Attestation',
           messageLinkUrl: 'https://comfort-dev.pathfinder.gov.bc.ca/app/minesattestations/admin/submission'
         },
-        createdBy: 'migration-007'
+        createdBy: 'migration-006'
+      };
+      return knex(`${PREFIX}_settings`).insert(data);
+    })
+    .then(() => {
+      const data = {
+        name: 'generateSubmissionPdf',
+        enabled: true,
+        config: {
+          template: 'generate-submission-pdf.docx',
+          templateJson: 'generate-submission-pdf.json'
+        },
+        createdBy: 'migration-006'
       };
       return knex(`${PREFIX}_settings`).insert(data);
     });
