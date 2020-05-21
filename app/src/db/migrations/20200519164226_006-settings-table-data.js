@@ -60,8 +60,8 @@ exports.up = function(knex) {
         name: 'generateSubmissionPdf',
         enabled: true,
         config: {
-          template: 'generate-submission-pdf.docx',
-          templateJson: 'generate-submission-pdf.json'
+          template: 'generate-submission-pdf-001.docx',
+          templateJson: 'generate-submission-pdf-001.json'
         },
         createdBy: 'migration-006'
       };
