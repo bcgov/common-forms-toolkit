@@ -137,7 +137,7 @@ class SubmissionStatus extends Models.Timestamps(Model) {
         submissionId: { type: 'string', pattern: constants.UUID_REGEX },
         code: { type: 'string', minLength: 1, maxLength: 255 },
         assignedTo: { type: ['string', 'null'], maxLength: 255 },
-        assignedToEmail: { type: ['string', 'null'], maxLength: 255 },
+        assignedToEmail: { type: ['string', 'null'], maxLength: 255, format: 'email' },
         actionDate: { type: 'string', format: 'date' },
         ...Models.stamps
       },

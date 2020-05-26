@@ -13,10 +13,15 @@ const v1Router = require('./src/routes/v1');
 const DataConnection = require('./src/db/dataConnection');
 const dataConnection = new DataConnection();
 
+const realmAdminInit = require('./src/components/realmAdminService').initialize;
+const realmAdminService = require('./src/components/realmAdminService').realmAdminService;
+const userSyncService = require('./src/forms/form/userSyncService');
+
 const apiRouter = express.Router();
 const state = {
   connections: {
-    data: false
+    data: false,
+    realmAdmin: false,
   },
   shutdown: false
 };
@@ -133,18 +138,26 @@ function initializeConnections() {
   // Initialize connections and exit if unsuccessful
   try {
     const tasks = [
-      dataConnection.checkAll()
+      dataConnection.checkAll(),
+      realmAdminInit()
     ];
 
     Promise.all(tasks)
       .then(results => {
         state.connections.data = results[0];
+        state.connections.realmAdmin = results[1];
 
-        if (state.connections.data) log.info('DataConnection', 'Connected');
+        log.info('initializeConnections', `DataConnection OK = ${state.connections.data}, Realm Admin. OK = ${state.connections.realmAdmin}`);
+        if (state.connections.realmAdmin) {
+          // do an initial sync of users
+          userSyncService.syncUsers(realmAdminService);
+          // start the polling for user sync
+          userSyncService.sync(realmAdminService);
+        }
       })
       .catch(error => {
         log.error(error);
-        log.error('initializeConnections', `Initialization failed: Database OK = ${state.connections.data}`);
+        log.error('initializeConnections', `Initialization failed: Database OK = ${state.connections.data}, Realm Admin. OK = ${state.connections.realmAdmin}`);
       })
       .finally(() => {
         state.ready = Object.values(state.connections).every(x => x);

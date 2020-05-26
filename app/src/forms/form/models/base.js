@@ -62,4 +62,45 @@ class Metadata extends Models.Timestamps(Model) {
   }
 }
 
+class FormUser extends Models.Timestamps(Model) {
+  static get tableName () {
+    return 'form_user';
+  }
+
+  static get idColumn () {
+    return 'userId';
+  }
+
+  static get jsonSchema() {
+    return {
+      type: 'object',
+      required: ['email'],
+      properties: {
+        userId: { type: 'string', pattern: constants.UUID_REGEX },
+        keycloakId: { type: 'string', pattern: constants.UUID_REGEX },
+        email: { type: 'string', format: 'email' },
+        ...Models.stamps
+      },
+      additionalProperties: false
+    };
+  }
+
+  static get modifiers () {
+    return {
+      filterKeycloakId(query, value) {
+        if (value !== undefined) {
+          query.where('keycloakId', value);
+        }
+      },
+      filterEmail(query, value) {
+        if (value) {
+          // ilike is postrges case insensitive like
+          query.where('email', 'ilike', `%${value}%`);
+        }
+      }
+    };
+  }
+}
+
 module.exports.Metadata = Metadata;
+module.exports.FormUser = FormUser;

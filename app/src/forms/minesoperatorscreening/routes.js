@@ -91,4 +91,5 @@ routes.put('/settings/:name', middleware.checkRole(['admin']), async (req, res, 
   await controller.updateSettings(req, res, next);
 });
 
+
 module.exports = routes;
