@@ -6,7 +6,8 @@
   "server": {
     "emailRecipients": "foo@bar.com,baz@boo.com",
     "keycloak": {
-      "clientSecret": "password"
+      "clientSecret": "password",
+      "adminClientSecret": "password"
     },
     "logLevel": "silent"
   },
