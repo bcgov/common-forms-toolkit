@@ -1,6 +1,20 @@
 import { appAxios } from '@/services/interceptors';
 
 export default {
+
+  // Form endpoints
+
+  /**
+   * @function getTypes
+   * Get Operation Types
+   * @param {string} form The form name
+   * @returns {Promise} An axios response
+   */
+  getTypes(form) {
+    return appAxios().get(`${form}/types`);
+  },
+
+
   // Team Management Endpoints
 
   /**
