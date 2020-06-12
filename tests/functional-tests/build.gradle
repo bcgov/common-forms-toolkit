@@ -11,7 +11,7 @@ ext {
   // these names are arbitrary and can be changed or extended.
   // configuration is in resources/GebConfig.groovy
   // add them here and configure them there
-  drivers = ["remoteEdge", "remoteFirefox", "remoteChrome"]
+  drivers = ["remoteEdge", "remoteFirefox", "remoteChrome", "localChrome"]
 
   ext {
     //@changeme
@@ -63,6 +63,7 @@ dependencies {
     exclude group: "org.codehaus.groovy"
   }
   compile "org.codehaus.groovy.modules.http-builder:$httpbuilderVersion"
+  compile group: 'com.browserstack', name: 'browserstack-local-java', version: '1.0.3'
   testCompile 'junit:junit:4.13'
 
   // Dependencies for running the tests
@@ -71,7 +72,6 @@ dependencies {
   testCompile("org.spockframework:spock-core:$spockCoreVersion") {
     exclude group: "org.codehaus.groovy"
   }
-
   testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
   testCompile "org.codehaus.groovy.modules.http-builder:$httpbuilderVersion"
 

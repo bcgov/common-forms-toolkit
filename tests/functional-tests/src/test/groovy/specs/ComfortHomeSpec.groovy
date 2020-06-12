@@ -14,13 +14,13 @@ class ComfortHomeSpec extends BrowserStackReportingSpec {
             assert toolbar_Title
             assert toolbar_Login
             assert screen_Login
-        when: 'I click Login'
+/*         when: 'I click Login'
             toolbar_loginButton()
         then: 'I am shown the Government login'
             at LoginPage
             assert pageTitle
             assert usernameField
             assert passwordField
-            assert logInButton
+            assert logInButton */
     }
 }

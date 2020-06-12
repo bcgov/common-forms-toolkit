@@ -7,6 +7,7 @@
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.remote.RemoteWebDriver
 import listeners.SessionIdHolder
+import com.browserstack.local.Local
 
 // Allows for setting you baseurl in an environment variable.
 // This is particularly handy for development and the pipeline
@@ -86,6 +87,26 @@ environments {
 			caps.setCapability("name", "Automated Test")
 			caps.setCapability("project", "${browserstackProjectName}")
 			caps.setCapability("build", "${buildId}:Chrome")
+			caps.setCapability("browserstack.local", "false");
+
+			String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub"
+
+			driver = new RemoteWebDriver(new URL(URL), caps)
+
+			return driver
+		}
+	}
+	localChrome {
+		driver = {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setCapability("browser", "Chrome")
+			caps.setCapability("os", "Windows")
+			caps.setCapability("os_version", "10")
+			caps.setCapability("resolution", "1920x1200")
+			caps.setCapability("name", "Automated Test")
+			caps.setCapability("project", "${browserstackProjectName}")
+			caps.setCapability("build", "${buildId}:Chrome")
+			caps.setCapability("browserstack.local", "true");
 
 			String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub"
 
