@@ -64,7 +64,7 @@ export default {
         linkName: 'ForestrySectorOpScreeningForm',
         resource: AppClients.FORESTRYSECTOROPSCREENING,
         roles: [AppRoles.VIEWER],
-        title: 'Forestry Sector Operator Screening'
+        title: 'TEST'
       },
       {
         enabled: true,
