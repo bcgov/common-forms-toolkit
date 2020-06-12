@@ -12,7 +12,7 @@ import com.browserstack.local.Local
 // Allows for setting you baseurl in an environment variable.
 // This is particularly handy for development and the pipeline
 Map env = System.getenv()
-baseUrl = env['BASE_URL']
+//baseUrl = env['BASE_URL']
 if (!baseUrl) {
 	baseUrl = "https://comfort.pathfinder.gov.bc.ca/app/" // https://comfort.pathfinder.gov.bc.ca/app/home
 }
