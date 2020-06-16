@@ -2,6 +2,10 @@
 
 /*
 
+Run: (from app directoy)
+node ./src/forms/attestations/forestrysectoroperatorscreening/silvipc-import.js
+
+
 NOTE: I did this using JetBrains DataGrip, so the export tools are particular to that Application.
 
 Connect to SILVIPC PROD
@@ -87,6 +91,265 @@ select
 (select count(*) from forsec_os_submission_attestation) as ipc_plans,
 (select count(*) from forsec_os_submission_location) as locations,
 (select count(*) from forsec_os_note) as notes;
+
+
+Some more queries, dump to csv and compare source results with dest results.
+
+Source (SILVIPC)
+================
+select
+       b."ipcPlanId" as _submission_id,
+       b."createdAt",
+       b."updatedAt",
+       b."updatedBy",
+       b.name,
+       b."addressLine1",
+       b."addressLine2",
+       b.city,
+       b.province,
+       b."postalCode"
+from business as b order by "createdAt";
+
+select
+       t."ipcPlanId" as _submission_id,
+       t."createdAt",
+       t."updatedAt",
+       t."updatedBy",
+       REPLACE(upper(t."contactType"), ' ', '_') as _contact_type,
+       t."firstName",
+       t."lastName",
+       t.phone1,
+       t.phone2,
+       t.email
+from contact as t order by "createdAt";
+
+select
+       t."ipcPlanId" as _submission_id,
+       t."createdAt",
+       t."updatedAt",
+       t."updatedBy",
+       t."startDate"::timestamp::date,
+       t."endDate"::timestamp::date,
+       t.city,
+       t."cityLatitude",
+       t."cityLongitude",
+       t."accTents",
+       t."tentDetails",
+       t."accWorkersHome",
+       t."accMotel",
+       t."motelName",
+       t."motelAddressLine1",
+       t."motelAddressLine2",
+       t."motelCity",
+       t."motelProvince",
+       t."motelPostalCode"
+from location as t order by "createdAt";
+
+select
+       t."ipcPlanId" as _submission_id,
+       t."createdBy",
+       t."createdAt",
+       t."updatedAt",
+       t.note
+from note as t order by _submission_id asc, "createdAt" desc;
+
+select
+       t."ipcPlanId" as _submission_id,
+       t."createdAt",
+       t."updatedAt",
+       t."guidelinesRead",
+       t."assessmentCompleted",
+       t."developedPlan",
+       t."protectionSignage",
+       t."workerContactPersonnel",
+       t."commonAreaDistancing",
+       case t."sleepingAreaType" when 1 then 'SINGLE' when 2 then 'SHARED' end as "sleepingAreaType",
+       t."sharedSleepingPerRoom",
+       t."sharedSleepingDistancing",
+       t."selfIsolateUnderstood",
+       t."selfIsolateAccommodation",
+       t."laundryServices",
+       t."wasteManagementGloves",
+       t."wasteManagementSchedule",
+       t."wasteManagementBags",
+       t."handWashingStations",
+       t."handWashingSoapWater",
+       t."handWashingWaterless",
+       t."handWashingPaperTowels",
+       t."handWashingSignage",
+       t."distancingMaintained",
+       t."distancingFaceShields",
+       t."disinfectingSchedule",
+       t."educationSignage",
+       t."educationContactPersonnel",
+       t."trainingCovid19",
+       t."trainingEtiquette",
+       t."trainingLocations",
+       t."trainingFirstAid",
+       t."trainingReporting",
+       t."mealsDistancing",
+       t."mealsDishware",
+       t."mealsDishwashing",
+       t."infectionSeparation",
+       t."infectionSymptoms",
+       t."infectionHeathLinkBC",
+       t."infectionSanitization",
+       t."infectionAccommodation",
+       t."infectedFeeding",
+       t."infectedHousekeeping",
+       t."infectedWaste",
+       t."certifyAccurateInformation",
+       t."agreeToInspection"
+from ipc_plan as t order by "createdAt";
+
+select
+       t."ipcPlanId" as _submission_id,
+       t."createdAt",
+       t."updatedAt",
+       upper(t."operationType") as "operationType"
+from ipc_plan as t order by "createdAt";
+
+select
+       t."ipcPlanId" as _submission_id,
+       t."createdBy",
+       t."createdAt",
+       t."updatedAt",
+       case when upper(t."status") = 'SCHEDULED' then 'ASSIGNED' else upper(t."status") end as code,
+       t.grade as classification,
+       t."inspectorName" as "assignedTo",
+       t."inspectorEmail" as "assignedToEmail",
+       t."inspectionDate"::timestamp::date as "actionDate"
+from inspection_status as t order by _submission_id asc, "createdAt" desc;
+
+
+
+================
+Dest (forsec_os)
+================
+
+select
+       b."submissionId" as _submission_id,
+       b."createdAt",
+       b."updatedAt",
+       b."updatedBy",
+       b.name,
+       b."addressLine1",
+       b."addressLine2",
+       b.city,
+       b.province,
+       b."postalCode"
+from forsec_os_submission_business as b order by "createdAt";
+
+select
+       t."submissionId" as _submission_id,
+       t."createdAt",
+       t."updatedAt",
+       t."updatedBy",
+       t."contactType" as _contact_type,
+       t."firstName",
+       t."lastName",
+       t.phone1,
+       t.phone2,
+       t.email
+from forsec_os_submission_contact as t order by "createdAt";
+
+select
+       t."submissionId" as _submission_id,
+       t."createdAt",
+       t."updatedAt",
+       t."updatedBy",
+       t."startDate",
+       t."endDate",
+       t.city,
+       t."cityLatitude",
+       t."cityLongitude",
+       t."accTents",
+       t."tentDetails",
+       t."accWorkersHome",
+       t."accMotel",
+       t."motelName",
+       t."motelAddressLine1",
+       t."motelAddressLine2",
+       t."motelCity",
+       t."motelProvince",
+       t."motelPostalCode"
+from forsec_os_submission_location as t order by "createdAt";
+
+select
+       t."submissionId" as _submission_id,
+       t."createdBy",
+       t."createdAt",
+       t."updatedAt",
+       t.note
+from forsec_os_note as t order by _submission_id asc,  "createdAt" desc;
+
+select
+       t."submissionId" as _submission_id,
+       t."createdAt",
+       t."updatedAt",
+       t."guidelinesRead",
+       t."assessmentCompleted",
+       t."developedPlan",
+       t."protectionSignage",
+       t."workerContactPersonnel",
+       t."commonAreaDistancing",
+       t."sleepingAreaType",
+       t."sharedSleepingPerRoom",
+       t."sharedSleepingDistancing",
+       t."selfIsolateUnderstood",
+       t."selfIsolateAccommodation",
+       t."laundryServices",
+       t."wasteManagementGloves",
+       t."wasteManagementSchedule",
+       t."wasteManagementBags",
+       t."handWashingStations",
+       t."handWashingSoapWater",
+       t."handWashingWaterless",
+       t."handWashingPaperTowels",
+       t."handWashingSignage",
+       t."distancingMaintained",
+       t."distancingFaceShields",
+       t."disinfectingSchedule",
+       t."educationSignage",
+       t."educationContactPersonnel",
+       t."trainingCovid19",
+       t."trainingEtiquette",
+       t."trainingLocations",
+       t."trainingFirstAid",
+       t."trainingReporting",
+       t."mealsDistancing",
+       t."mealsDishware",
+       t."mealsDishwashing",
+       t."infectionSeparation",
+       t."infectionSymptoms",
+       t."infectionHeathLinkBC",
+       t."infectionSanitization",
+       t."infectionAccommodation",
+       t."infectedFeeding",
+       t."infectedHousekeeping",
+       t."infectedWaste",
+       t."certifyAccurateInformation",
+       t."agreeToInspection"
+from forsec_os_submission_attestation as t order by "createdAt";
+
+select
+       t."submissionId" as _submission_id,
+       t."createdAt",
+       t."updatedAt",
+       t.type as "operationType"
+from forsec_os_submission as t order by "createdAt";
+
+select
+       t."submissionId" as _submission_id,
+       t."createdBy",
+       t."createdAt",
+       t."updatedAt",
+       t.code,
+       t.classification,
+       t."assignedTo",
+       t."assignedToEmail",
+       t."actionDate"
+from forsec_os_submission_status as t order by _submission_id asc,  "createdAt" desc;
 
  */
 
@@ -414,7 +677,6 @@ const loadImportData = (location) => {
     importData.notes = fs.readJsonSync(path.join(location, 'note.json'));
     console.log(`...${importData.notes.length}`);
     return importData.ipcPlans.length &&
-      importData.ipcPlans.length &&
       importData.businesses.length &&
       importData.locations.length &&
       importData.statuses.length &&
@@ -423,6 +685,26 @@ const loadImportData = (location) => {
     console.log(`Location ${location} does not exist, cannot perform import.`);
     return false;
   }
+};
+
+const setCityCoordinates = (location, lat, lon) => {
+  // lat lon must fit within our specified boundaries.
+  // try as they are...
+  // try flipped (we had issues in silv with reversed lat/lon)
+  // if we need to put in a special case for a city, we can do it here, pass in city...?
+  let latitude = null;
+  let longitude = null;
+  if (lat && lon) {
+    if (lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
+      latitude = lat;
+      longitude = lon;
+    } else if (lon >= -90 && lon <= 90 && lat >= -180 && lat <= 180) {
+      latitude = lon;
+      longitude = lat;
+    }
+  }
+  location.cityLatitude = latitude;
+  location.cityLongitude = longitude;
 };
 
 const work = async () => {
@@ -565,8 +847,7 @@ const work = async () => {
               location.startDate = ipcLocation.startDate.substring(0, 10);
               location.endDate = ipcLocation.endDate.substring(0, 10);
               location.numberOfWorkers = ipcLocation.numberOfWorkers ? ipcLocation.numberOfWorkers : 1;
-              location.cityLatitude = ipcLocation.cityLatitude >= -90 && ipcLocation.cityLatitude <= 90 ? ipcLocation.cityLatitude : null;
-              location.cityLongitude = ipcLocation.cityLongitude >= -180 && ipcLocation.cityLongitude <= 180 ? ipcLocation.cityLongitude : null;
+              setCityCoordinates(location, ipcLocation.cityLatitude, ipcLocation.cityLongitude);
               // attach to submission
               submission.location = location;
 
