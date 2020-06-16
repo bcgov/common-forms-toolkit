@@ -760,7 +760,7 @@ const work = async () => {
             } else {
               // create the submission from ipcPlan, if this plan was cancelled then migrate as deleted...
               const ipcStatus = importData.statuses.filter(x => x.ipcPlanId === ipcPlan.ipcPlanId);
-              const deleted = ipcStatus.includes(x => x.status === 'Cancelled');
+              const deleted = ipcStatus.some(x => x.status === 'Cancelled');
 
               const submission = {
                 submissionId: ipcPlan.ipcPlanId,
