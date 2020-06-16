@@ -758,13 +758,16 @@ const work = async () => {
               console.log(`IPC Plan ${ipcPlan.ipcPlanId} has already been imported.  Skipping...`);
               skipped++;
             } else {
-              // create the submission from ipcPlan
+              // create the submission from ipcPlan, if this plan was cancelled then migrate as deleted...
+              const ipcStatus = importData.statuses.filter(x => x.ipcPlanId === ipcPlan.ipcPlanId);
+              const deleted = ipcStatus.includes(x => x.status === 'Cancelled');
+
               const submission = {
                 submissionId: ipcPlan.ipcPlanId,
                 formVersionId: form.formVersionId,
                 confirmationId: ipcPlan.ipcPlanId.substring(0, 8).toUpperCase(),
                 type: ipcPlan.operationType,
-                deleted: false,
+                deleted: deleted,
                 createdBy: ipcPlan.createdBy,
                 createdAt: moment.utc(ipcPlan.createdAt).toISOString(),
                 updatedBy: ipcPlan.updatedBy,
@@ -857,7 +860,6 @@ const work = async () => {
               const ipcNotes = importData.notes.filter(x => x.ipcPlanId === ipcPlan.ipcPlanId);
               const submissionNotes = ipcNotes.filter(x => x.inspectionStatusId === null);
 
-              const ipcStatus = importData.statuses.filter(x => x.ipcPlanId === ipcPlan.ipcPlanId);
               // need to order ascending, so we add the first one first...
               const statuses = ipcStatus.map(s => {
                 const getStatusCode = status => {
