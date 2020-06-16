@@ -449,7 +449,7 @@ class Status extends Timestamps(Model) {
         code: {type: 'string', minLength: 1, maxLength: 255},
         assignedTo: {type: ['string', 'null'], maxLength: 255},
         assignedToEmail: {type: ['string', 'null'], maxLength: 255},
-        actionDate: {type: 'string', format: 'date'},
+        actionDate: {type: ['string', 'null'], format: 'date'},
         classification: {type: ['string', 'null'], maxLength: 255},
         ...stamps
       },
