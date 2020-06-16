@@ -863,10 +863,15 @@ const work = async () => {
               // need to order ascending, so we add the first one first...
               const statuses = ipcStatus.map(s => {
                 const getStatusCode = status => {
-                  if (status === 'Scheduled') {
+                  //   SUBMITTED: 'Submitted' - ok
+                  //   ASSIGNED: 'Assigned' - ok
+                  //   SCHEDULED: 'Scheduled' - Assigned
+                  //   FOLLOWUP: 'Follow-up' - Assigned
+                  //   COMPLETED: 'Completed' - ok
+                  //   CANCELLED: 'Cancelled' - COMPLETED
+                  if (status === 'Scheduled' || status === 'Follow-up') {
                     return 'ASSIGNED';
-                  }
-                  if (status === 'Cancelled') {
+                  } else if (status === 'Cancelled') {
                     return 'COMPLETED';
                   }
                   return status.toUpperCase();
