@@ -1,0 +1,110 @@
+# Build config for Jenkins bddstack-node functional testing
+#
+# Process this file, creating or replacing imagestreams and builds
+# $ oc process -f openshift/bddstack-node.yaml | oc [create|replace] -n <PROJECT> -f -
+#
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: bddstack-node
+    build: bddstack-node
+  name: bddstack-node
+  namespace: zwmtib-tools
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: "bddstack-node:2.0"
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    dockerfile: >
+      FROM registry.access.redhat.com/openshift3/jenkins-slave-base-rhel7
+
+
+      ARG NODE_VERSION=v12.4.0
+
+
+      EXPOSE 8080
+
+
+      ENV PATH=$HOME/.local/bin/:$PATH \
+          LC_ALL=en_US.UTF-8 \
+          LANG=en_US.UTF-8 \
+          SUMMARY="Jenkins slave with chrome installed for use with functional/BDD tests that use bddstack-node." \
+          DESCRIPTION="Jenkins pipeline slave with chrome for testing application with headless browser."
+
+      LABEL summary="$SUMMARY" \
+            description="$DESCRIPTION" \
+            io.k8s.description="$DESCRIPTION" \
+            io.k8s.display-name="Jenkins-Pipeline-bddstack" \
+            io.openshift.expose-services="8080:http" \
+            io.openshift.tags="builder,jenkins-jnlp-chrome,jenkins-jnlp" \
+            release="1"
+
+      RUN yum repolist > /dev/null && \
+          yum install -y yum-utils && \
+          yum-config-manager --disable \* &> /dev/null && \
+          yum-config-manager --enable rhel-server-rhscl-7-rpms && \
+          yum-config-manager --enable rhel-7-server-rpms && \
+          yum-config-manager --enable rhel-7-server-optional-rpms && \
+          yum-config-manager --enable rhel-7-server-fastrack-rpms && \
+          UNINSTALL_PKGS="java-1.8.0-openjdk-headless.i686" &&\
+          INSTALL_PKGS="redhat-lsb libXScrnSaver gdk-pixbuf2 xorg-x11-server-Xvfb" && \
+          yum remove -y $UNINSTALL_PKGS &&\
+          yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+          rpm -V $INSTALL_PKGS && \
+          yum clean all -y
+       
+      RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm --output google-chrome-stable_current_x86_64.rpm --silent && \
+          yum -y localinstall google-chrome-stable_current_x86_64.rpm && \
+          rm google-chrome-stable_current_x86_64.rpm && \
+          if [ ! -d /home/jenkins/.pki ] ; then mkdir /home/jenkins/.pki; fi && \
+          chmod 777 /home/jenkins/.pki && \
+          yum info google-chrome-stable
+          
+      RUN cd /opt && \
+          curl -sL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.xz | tar -Jx && \
+          rm -f node-${NODE_VERSION}-linux-x64.tar.xz
+
+
+      ENV NODE_HOME=/opt/node-${NODE_VERSION}-linux-x64 \
+          PATH=$PATH:/opt/node-${NODE_VERSION}-linux-x64/bin
+
+      # Update the version of `npm` that came with the packages above
+
+      # and install a few additional tools.
+
+      RUN npm i -g npm@latest yarn@latest nsp@latest nodemon@latest  && \
+          rm -rf ~/.npm && \
+          node -v && \
+          npm -v
+
+      RUN wget https://services.gradle.org/distributions/gradle-4.2-bin.zip -P /opt
+      RUN unzip -d /opt/gradle /opt/gradle-*.zip
+
+      ENV GRADLE_HOME=/opt/gradle/gradle-4.2
+      ENV PATH=${GRADLE_HOME}/bin:${PATH}    
+
+      USER 1001
+    type: Dockerfile
+  strategy:
+    dockerStrategy:
+      env:
+        - name: OPENSHIFT_JENKINS_JVM_ARCH
+          value: x86_64
+        - name: CHROMEDRIVERVERSION
+          value: 80.0.3987.16
+        - name: SOFTWARE_VERSIONS
+          valueFrom:
+            configMapKeyRef:
+              key: VERSIONS
+              name: bddstack-versions
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+    - type: ConfigChange
