@@ -19,13 +19,14 @@ select * from ipc_plan order by "createdAt";
 select * from location order by "createdAt";
 select * from note order by "createdAt";
 
-Should have a directory with 6 json files:
+Should have a directory with 6 json files (files can have a prefix, such as 'silvipc_public_'):
 - business.json
 - contact.json
 - inspection_status.json
 - ipc_plan.json
 - location.json
 - note.json
+
 
 Files are an array of records.
 [
@@ -47,7 +48,13 @@ Files are an array of records.
 
 Run this query to get the current statuses for each ipc_plan/submission.
 
-SELECT ipc_plan."ipcPlanId" as _id, ipc_plan."createdAt" as _created, upper(stat.status) as _status, upper(stat.grade) as _grade, stat."inspectorName" as _name, stat."inspectorEmail" as _email, stat."inspectionDate" as _date
+SELECT ipc_plan."ipcPlanId" as _id,
+ipc_plan."createdAt" as _created,
+case when upper(stat.status) = 'SCHEDULED' then 'ASSIGNED' when upper(stat.status) = 'FOLLOW-UP' then 'ASSIGNED' when upper(stat.status) = 'CANCELLED' then 'COMPLETED' else upper(stat.status) end as _status,
+upper(stat.grade) as _grade,
+stat."inspectorName" as _name,
+stat."inspectorEmail" as _email,
+stat."inspectionDate"::timestamp::date as _date
 FROM ipc_plan LEFT JOIN LATERAL
      (SELECT *
       FROM inspection_status
@@ -214,13 +221,12 @@ select
        t."createdBy",
        t."createdAt",
        t."updatedAt",
-       case when upper(t."status") = 'SCHEDULED' then 'ASSIGNED' else upper(t."status") end as code,
+       case when upper(t."status") = 'SCHEDULED' then 'ASSIGNED' when upper(t."status") = 'FOLLOW-UP' then 'ASSIGNED' when upper(t."status") = 'CANCELLED' then 'COMPLETED' else upper(t."status") end as code,
        t.grade as classification,
        t."inspectorName" as "assignedTo",
        t."inspectorEmail" as "assignedToEmail",
        t."inspectionDate"::timestamp::date as "actionDate"
 from inspection_status as t order by _submission_id asc, "createdAt" desc;
-
 
 
 ================
@@ -545,6 +551,7 @@ class ImportStatus extends Models.Status {
 
 const params = {
   fileLocation: undefined,
+  filePrefix: undefined,
   host: undefined,
   port: undefined,
   database: undefined,
@@ -560,6 +567,7 @@ const getUserInput = () => {
     create: false,
     defaultInput: '/Users/jason/Downloads/silvipc_data'
   });
+  params.filePrefix = readlineSync.question('JSON file name prefix (silvipc_public_): ', {defaultInput: 'silvipc_public_'});
 
   params.host = readlineSync.question('Destination db host (localhost): ', {defaultInput: 'localhost'});
   params.port = readlineSync.questionInt('Destination db port (5432): ', {defaultInput: 5432});
@@ -655,26 +663,26 @@ const importData = {
   notes: []
 };
 
-const loadImportData = (location) => {
+const loadImportData = (location, prefix) => {
   if (fs.existsSync(location)) {
     console.log(`Loading json files from ${location}`);
     console.log('ipc_plans');
-    importData.ipcPlans = fs.readJsonSync(path.join(location, 'ipc_plan.json'));
+    importData.ipcPlans = fs.readJsonSync(path.join(location, `${prefix}ipc_plan.json`));
     console.log(`...${importData.ipcPlans.length}`);
     console.log('businesses');
-    importData.businesses = fs.readJsonSync(path.join(location, 'business.json'));
+    importData.businesses = fs.readJsonSync(path.join(location, `${prefix}business.json`));
     console.log(`...${importData.businesses.length}`);
     console.log('contacts');
-    importData.contacts = fs.readJsonSync(path.join(location, 'contact.json'));
+    importData.contacts = fs.readJsonSync(path.join(location, `${prefix}contact.json`));
     console.log(`...${importData.contacts.length}`);
     console.log('locations');
-    importData.locations = fs.readJsonSync(path.join(location, 'location.json'));
+    importData.locations = fs.readJsonSync(path.join(location, `${prefix}location.json`));
     console.log(`...${importData.locations.length}`);
     console.log('statuses');
-    importData.statuses = fs.readJsonSync(path.join(location, 'inspection_status.json'));
+    importData.statuses = fs.readJsonSync(path.join(location, `${prefix}inspection_status.json`));
     console.log(`...${importData.statuses.length}`);
     console.log('notes');
-    importData.notes = fs.readJsonSync(path.join(location, 'note.json'));
+    importData.notes = fs.readJsonSync(path.join(location, `${prefix}note.json`));
     console.log(`...${importData.notes.length}`);
     return importData.ipcPlans.length &&
       importData.businesses.length &&
@@ -712,7 +720,7 @@ const work = async () => {
 
   const connected = await checkConnections();
   if (connected) {
-    if (loadImportData(params.fileLocation)) {
+    if (loadImportData(params.fileLocation, params.filePrefix)) {
       console.log('Loaded data...');
 
       const doIt = readlineSync.keyInYNStrict(`Import ${importData.ipcPlans.length} ipc_plans/submissions to ${params.host}:${params.port}/${params.database}? `);
