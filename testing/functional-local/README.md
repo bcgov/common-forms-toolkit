@@ -8,17 +8,18 @@ These are the automated functional tests that prove the User Stories to be funct
 
 1. Start the application under test
 2. Make sure you have Java installed (Min. Version 1.8)
-3. Navigate to the /testing/functional-local directory and...
+3. Make sure you have Gradle 4.2.1 installed: `choco install gradle --version=4.2.1`
+4. Navigate to the /testing/functional-local directory and...
 
 The following commands will launch the tests with the individual browsers:
 
-    ./gradlew chromeTest
+    gradle chromeTest
 
 Alternative commands (might require additional set up):
 
-    ./gradlew chromeHeadlessTest //Will run in pipeline as well
-    ./gradlew firefoxTest
-    ./gradlew firefoxHeadlessTest //Will run in pipeline as well
+    gradle chromeHeadlessTest //Will run in pipeline as well
+    gradle firefoxTest
+    gradle firefoxHeadlessTest //Will run in pipeline as well
 
 ## Test result reports
 
