@@ -3,6 +3,9 @@
     "username": "username",
     "password": "password"
   },
+  "objectStorage": {
+    "secretAccessKey": "secretaccesskey"
+  },
   "server": {
     "keycloak": {
       "clientSecret": "password",
