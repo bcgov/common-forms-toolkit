@@ -4,6 +4,15 @@ const path = require('path');
 const router = require('express').Router();
 const yaml = require('js-yaml');
 
+const fileUpload = require('../forms/files/middleware/upload').fileUpload;
+
+fileUpload.init({
+  dir: config.has('server.uploads.dir') ? config.get('server.uploads.dir') : undefined,
+  fieldName: config.has('server.uploads.fieldName') ? config.get('server.uploads.fieldName') : undefined,
+  maxFileCount: config.has('server.uploads.maxFileCount') ? config.get('server.uploads.maxFileCount') : undefined,
+  maxFileSize: config.has('server.uploads.maxFileSize') ? config.get('server.uploads.maxFileSize') : undefined
+});
+
 const agriSeafoodOpScreening = require('../forms/attestations/agriseafoodopscreening');
 const forestrySectorOperatorScreening = require('../forms/attestations/forestrysectoroperatorscreening');
 const form = require('../forms/form');

@@ -20,7 +20,7 @@ In order to prepare an environment, you will need to ensure that all of the foll
 
 ### Config Maps
 
-*Note:* Replace anything in angle brackets with the appropriate value!
+*Note:* Replace anything in angle brackets with the appropriate value! And ensure any Openshift environment details are changed as appropriate (ex. dev, -dev).  
 
 ```sh
 export NAMESPACE=<yournamespace>
@@ -52,6 +52,19 @@ oc create -n $NAMESPACE configmap $APP_NAME-server-config \
   --from-literal=SERVER_MORGANFORMAT=combined \
   --from-literal=SERVER_PORT=8080
 ```
+
+The following will configure the server for file uploads and delivery to Ministry Object Storage.  
+
+```sh
+oc create -n $NAMESPACE configmap $APP_NAME-files-config \
+  --from-literal=OBJECTSTORAGE_BUCKET=egejyy \
+  --from-literal=OBJECTSTORAGE_ENDPOINT=https://nrs.objectstore.gov.bc.ca \
+  --from-literal=OBJECTSTORAGE_KEY=comfort/dev \
+  --from-literal=SERVER_UPLOADS_FIELD_NAME=files \
+  --from-literal=SERVER_UPLOADS_MAX_FILE_COUNT=1 \
+  --from-literal=SERVER_UPLOADS_MAX_FILE_SIZE=10MB
+```
+You can also set SERVER\_UPLOADS\_DIR if you have a specific directory you will use as temporary local storage for file uploads.  If none specified, it will just use the system temp directory.  
 
 ### Secrets
 
@@ -87,6 +100,18 @@ export username=<username>
 export password=<password>
 
 oc create -n $NAMESPACE secret generic $APP_NAME-keycloak-admin-secret \
+  --type=kubernetes.io/basic-auth \
+  --from-literal=username=$username \
+  --from-literal=password=$password
+```
+
+This is the for Ministry Object Storage connection.
+
+```sh
+export username=<username>
+export password=<password>
+
+oc create -n $NAMESPACE secret generic $APP_NAME-objectstorage-secret \
   --type=kubernetes.io/basic-auth \
   --from-literal=username=$username \
   --from-literal=password=$password

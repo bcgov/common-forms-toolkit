@@ -17,6 +17,9 @@ const teamEvents = require('../../teammanagement/events');
 const TeamRouter = require('../../teammanagement/router');
 const teamRouter = new TeamRouter(constants.SLUG);
 
+const FilesRouter = require('../../files/router');
+const filesRouter = new FilesRouter(constants.SLUG);
+
 const AttestationController  = require('../controller').OperationTypesController;
 const AttestationDataService  = require('../dataService').OperationTypesDataService;
 const AttestationEmailService  = require('../emailService').OperationTypesEmailService;
@@ -43,6 +46,7 @@ module.exports.mount = (app) => {
   // load the form routes first, allows us to "override" common if we need
   app.use(p, formRouter.routes);
   app.use(p, commonRouter.routes);
+  app.use(p, filesRouter.routes);
   app.use(`${p}/team`, teamRouter.routes);
   app.use(commonMiddleware.dataErrors);
   return p;
