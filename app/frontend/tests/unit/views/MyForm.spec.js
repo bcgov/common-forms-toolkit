@@ -3,7 +3,7 @@ import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 
 import getRouter from '@/router';
-import MinesOperatorScreening from '@/views/MyForm.vue';
+import MyForm from '@/views/MyForm.vue';
 
 const localVue = createLocalVue();
 localVue.use(getRouter());

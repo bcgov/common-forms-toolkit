@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     resource() {
-      return AppClients.MINESOPERATORSCREENING;
+      return AppClients.MYFORM;
     }
   },
   data: () => ({
@@ -44,7 +44,7 @@ export default {
       this.loading = true;
       try {
         const response = await commonFormService.getNamedSetting(
-          FormNames.MINESOPERATORSCREENING,
+          FormNames.MYFORM,
           AppSettings.DASHBOARD
         );
         this.dashboards = response.data.config;

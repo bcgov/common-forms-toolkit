@@ -2,7 +2,7 @@ import { createLocalVue, shallowMount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 
 import getRouter from '@/router';
-import Team from '@/views/myForm/Team.vue';
+import Team from '@/views/myform/Team.vue';
 
 const localVue = createLocalVue();
 const router = getRouter();

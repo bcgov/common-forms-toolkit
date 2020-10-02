@@ -39,14 +39,14 @@ router.get('/', (_req, res) => {
 });
 
 // add the path to the endpoints list (optional)
- router.get('/', (_req, res) => {
-   res.status(200).json({
-     endpoints: [
-       '/docs',
-       myformPath
-     ]
-   });
- });
+router.get('/', (_req, res) => {
+  res.status(200).json({
+    endpoints: [
+      '/docs',
+      myformPath
+    ]
+  });
+});
 
 /** OpenAPI Docs */
 router.get('/docs', (_req, res) => {

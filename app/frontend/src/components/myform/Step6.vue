@@ -157,15 +157,15 @@
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 import SubmissionConfirmation from '@/components/common/attestation/SubmissionConfirmation.vue';
-import Step1 from '@/components/minesoperatorscreening/Step1.vue';
-import Step2 from '@/components/minesoperatorscreening/Step2.vue';
-import Step3 from '@/components/minesoperatorscreening/Step3.vue';
-import Step4 from '@/components/minesoperatorscreening/Step4.vue';
-import Step5 from '@/components/minesoperatorscreening/Step5.vue';
+import Step1 from '@/components/myform/Step1.vue';
+import Step2 from '@/components/myform/Step2.vue';
+import Step3 from '@/components/myform/Step3.vue';
+import Step4 from '@/components/myform/Step4.vue';
+import Step5 from '@/components/myform/Step5.vue';
 import { FormNames } from '@/utils/constants';
 
 export default {
-  name: 'MinesAttestationStep6',
+  name: 'MyFormStep6',
   components: {
     SubmissionConfirmation,
     Step1,
@@ -205,7 +205,7 @@ export default {
       }
     },
     formName() {
-      return FormNames.MINESOPERATORSCREENING;
+      return FormNames.MYFORM;
     }
   },
   methods: {

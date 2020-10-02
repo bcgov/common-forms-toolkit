@@ -1,7 +1,7 @@
 import routes from '@/router/myForm';
 
 const baseName = 'MyForm';
-const baseTitle = 'Demo Form based off Mines Operator Screening';
+const baseTitle = 'My Form';
 
 describe(`Routes > ${baseName}`, () => {
   it('has the correct number of routes', () => {
