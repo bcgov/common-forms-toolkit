@@ -31,6 +31,6 @@ describe('FormList.vue', () => {
     expect(wrapper.text()).toMatch('Agriculture and Seafood Operator Screening');
     // expect(wrapper.text()).toMatch('Forestry Sector Operator Screening');
     expect(wrapper.text()).toMatch('Mines Operator Screening');
-    expect(wrapper.vm.forms).toHaveLength(3);
+    expect(wrapper.vm.forms).toHaveLength(4);
   });
 });
