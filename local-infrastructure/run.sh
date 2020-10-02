@@ -2,17 +2,13 @@
 #%
 #% Common Forms Toolkit Local Infrastructure quick run
 #%
-#%  [ENV_FILE=./.env] [VERBOSE=false] THIS_FILE.sh
-#%
-#%    [TIMEOUT=10] THIS_FILE.sh ./input.csv [./results.csv]
-#%
 #%  Please create ../app/config/local.json.
 #%    Minimal, redacted example: ../app/config/sample-local.json
 #%
 #%  Request a GETOK Account and password.
 #%    https://getok.pathfinder.gov.bc.ca/getok/about
 #%
-# Prerequisites: Node.js 12, docker, docker compose and python
+# Prerequisites: Node.js 12, docker and docker compose
 # https://bcgov.github.io/common-forms-toolkit/local-infrastructure/
 
 # Boilerplate - halt conditions (errors, unsets, non-zero pipes), verbosity and help (w/o params)
@@ -50,7 +46,6 @@ npm run all:build
     while (! curl -s http://localhost:8080 -o /dev/null); do
         sleep 10
     done
-    npx open-cli http://localhost:28080/
     npx open-cli http://localhost:8080/
 ) &
 
