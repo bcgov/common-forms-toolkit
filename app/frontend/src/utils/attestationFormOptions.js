@@ -13,7 +13,7 @@ const Options = Object.freeze({
       pdfDocs: [
         {
           title: 'Protecting Farm Workers and Temporary Foreign Workers During the COVID-19 Pandemic',
-          link: 'https://www2.gov.bc.ca/assets/gov/health/about-bc-s-health-care-system/office-of-the-provincial-health-officer/covid-19/covid-19-pho-guidance-farms-farm-workers.pdf'
+          link: 'http://www.bccdc.ca/Health-Info-Site/Documents/COVID_public_guidance/All-sector-work-camps-guidance.pdf'
         },
         {
           title: 'COVID-19 pandemic PHO Order Industrial Camps: What does it mean for B.C.\'s agriculture and seafood industry?',
@@ -37,7 +37,7 @@ const Options = Object.freeze({
       pdfDocs: [
         {
           title: 'Protecting Employees, Contractors, and Employers Working ... During the COVID-19 Pandemic',
-          link: 'https://www2.gov.bc.ca/assets/gov/health/about-bc-s-health-care-system/office-of-the-provincial-health-officer/covid-19/covid-19-pho-guidance-work-camps-silviculture.pdf'
+          link: 'http://www.bccdc.ca/Health-Info-Site/Documents/COVID_public_guidance/All-sector-work-camps-guidance.pdf'
         }
       ],
       docShortTitle: 'COVID-19 Guidelines for Forestry Sector Work Camps',
