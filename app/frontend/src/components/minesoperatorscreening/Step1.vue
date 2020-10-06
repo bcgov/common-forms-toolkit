@@ -35,7 +35,7 @@
           </h4>
           <p>
             <a
-              href="https://www2.gov.bc.ca/assets/gov/health/about-bc-s-health-care-system/office-of-the-provincial-health-officer/covid-19/covid-19-pho-guidance-natural-resource-sector-work-camps.pdf"
+              href="http://www.bccdc.ca/Health-Info-Site/Documents/COVID_public_guidance/All-sector-work-camps-guidance.pdf"
               target="_blank"
               data-test="btn-form-health-pdf-link"
             >Download PDF</a>
