@@ -1,16 +1,30 @@
 ---
 apiVersion: v1
 kind: Template
-labels:
-  template: "${APP_NAME}-reverse-proxy-template"
-  app: "${APP_NAME}-reverse-proxy"
 metadata:
+  annotations:
+    description: Caddy Server
+    iconClass: icon-caddy
+    openshift.io/display-name: Caddy Server
+    openshift.io/long-description: |
+      Caddy 2 is a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go.
+    tags: caddy
   name: "${APP_NAME}-reverse-proxy-dc"
+labels:
+  app: "${APP_NAME}-reverse-proxy"
+  app.kubernetes.io/component: reverse-proxy
+  app.kubernetes.io/instance: ${INSTANCE}
+  app.kubernetes.io/name: caddy
+  app.kubernetes.io/managed-by: template
+  app.kubernetes.io/part-of: ${APP_NAME}-${INSTANCE}
+  app.kubernetes.io/version: "2"
+  app.openshift.io/runtime: golang
+  template: "${APP_NAME}-reverse-proxy-template"
 objects:
   # - kind: NetworkSecurityPolicy
-  #   apiVersion: secops.pathfinder.gov.bc.ca/v1alpha1
+  #   apiVersion: security.devops.gov.bc.ca/v1alpha1
   #   metadata:
-  #     name: "${APP_NAME}-reverse-proxy-pods-to-egress-${NAMESPACE}"
+  #     name: "${APP_NAME}-reverse-proxy-egress-internet"
   #   spec:
   #     description: |
   #       Allow app pods to open connections to the internet
@@ -27,21 +41,56 @@ objects:
       name: "${APP_NAME}-caddyfile"
     data:
       Caddyfile: |
-        *:2015 {
-            redir 302 {
-                https://comfort.pathfinder.gov.bc.ca/app/${APP_NAME}/
-            }
-
-            log / stdout "{combined}"
-
-            errors stdout
+        {
+            admin off
+            auto_https off
+            http_port 8080
+            https_port 8433
         }
+
+        agriseafoodopscreening.gov.bc.ca:8080 {
+            encode gzip
+            log
+            redir https://comfort.nrs.gov.bc.ca/app/agriseafoodopscreening permanent
+        }
+
+        forestrysectoropscreening.gov.bc.ca:8080 {
+            encode gzip
+            log
+            redir https://comfort.nrs.gov.bc.ca/app/forestrysectoropscreening permanent
+        }
+
+        minesoperatorscreening.gov.bc.ca:8080 {
+            encode gzip
+            log
+            redir https://comfort.nrs.gov.bc.ca/app/minesoperatorscreening permanent
+        }
+
+        silvicultureoperatorscreening.gov.bc.ca:8080 {
+            encode gzip
+            log
+            redir https://comfort.nrs.gov.bc.ca/app/forestrysectoropscreening permanent
+        }
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: "${APP_NAME}-reverse-proxy"
+    spec:
+      ports:
+        - name: http
+          port: 8080
+        - name: https
+          port: 8433
+      selector:
+        app: "${APP_NAME}-reverse-proxy"
+        deploymentconfig: "${APP_NAME}-reverse-proxy"
+        role: reverse-proxy
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
       name: "${APP_NAME}-reverse-proxy"
     spec:
-      replicas: 2
+      replicas: ${{REPLICAS}}
       selector:
         app: "${APP_NAME}-reverse-proxy"
         deploymentconfig: "${APP_NAME}-reverse-proxy"
@@ -53,35 +102,48 @@ objects:
         metadata:
           labels:
             app: "${APP_NAME}-reverse-proxy"
+            app.kubernetes.io/component: reverse-proxy
+            app.kubernetes.io/instance: ${INSTANCE}
+            app.kubernetes.io/name: caddy
+            app.kubernetes.io/managed-by: template
+            app.kubernetes.io/part-of: ${APP_NAME}-${INSTANCE}
+            app.kubernetes.io/version: "2"
+            app.openshift.io/runtime: golang
             deploymentconfig: "${APP_NAME}-reverse-proxy"
             role: reverse-proxy
         spec:
           containers:
-            - command:
+            - name: caddy
+              image: ${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
+              imagePullPolicy: IfNotPresent
+              command:
                 - sh
                 - -c
-                - exec caddy -quic -conf /mnt/Caddyfile
-              image: docker-registry.default.svc:5000/bcgov/s2i-caddy:v1-stable
-              imagePullPolicy: IfNotPresent
+                - exec caddy run --config /mnt/Caddyfile --adapter caddyfile
               livenessProbe:
-                failureThreshold: 3
                 tcpSocket:
-                  port: 2015
+                  port: 8080
                 periodSeconds: 10
-                successThreshold: 1
                 timeoutSeconds: 1
-              name: caddy
+                failureThreshold: 3
               ports:
-                - containerPort: 2015
-                  protocol: TCP
+                - containerPort: 8080
+                  name: http
+                - containerPort: 8433
+                  name: https
               readinessProbe:
-                failureThreshold: 3
                 tcpSocket:
-                  port: 2015
+                  port: 8080
                 periodSeconds: 10
-                successThreshold: 1
                 timeoutSeconds: 1
-              resources: {}
+                failureThreshold: 3
+              resources:
+                requests:
+                  cpu: ${CPU_REQUEST}
+                  memory: ${MEMORY_REQUEST}
+                limits:
+                  cpu: ${CPU_LIMIT}
+                  memory: ${MEMORY_LIMIT}
               volumeMounts:
                 - mountPath: /mnt
                   name: caddyfile
@@ -94,26 +156,56 @@ objects:
       test: false
       triggers:
         - type: ConfigChange
-  - apiVersion: v1
-    kind: Service
-    metadata:
-      name: "${APP_NAME}-reverse-proxy"
-    spec:
-      ports:
-        - name: 2015-tcp
-          port: 2015
-          protocol: TCP
-          targetPort: 2015
-      selector:
-        app: "${APP_NAME}-reverse-proxy"
-        deploymentconfig: "${APP_NAME}-reverse-proxy"
-        role: reverse-proxy
 parameters:
   - name: APP_NAME
     description: Application name
     displayName: Application name
     required: true
+  - name: INSTANCE
+    description: The name of this instance of the application
+    displayName: Application Instance Name
+    required: true
   # - name: NAMESPACE
-  #   description: Target namespace reference (i.e. 'k8vopl-dev')
+  #   description: Target namespace reference (i.e. 'a7f51d-dev')
   #   displayName: Target Namespace
   #   required: true
+  - name: REPLICAS
+    description: The number of StatefulSet replicas to use.
+    displayName: Replicas
+    required: true
+    value: "2"
+  - name: IMAGE_REGISTRY
+    description: The base docker registry
+    displayName: Docker Image Registry
+    required: true
+    value: docker.io
+  - name: IMAGE_NAME
+    description: Redis Image Name
+    displayName: Image Name
+    required: true
+    value: caddy
+  - name: IMAGE_TAG
+    description: Redis Image Tag
+    displayName: Image Tag
+    required: true
+    value: 2.3.0-alpine
+  - name: CPU_REQUEST
+    description: Starting amount of CPU the container can use.
+    displayName: CPU Request
+    required: true
+    value: 25m
+  - name: CPU_LIMIT
+    description: Maximum amount of CPU the container can use.
+    displayName: CPU Limit
+    required: true
+    value: 100m
+  - name: MEMORY_REQUEST
+    description: Starting amount of memory the container can use.
+    displayName: Memory Request
+    required: true
+    value: 64Mi
+  - name: MEMORY_LIMIT
+    description: Maximum amount of memory the container can use.
+    displayName: Memory Limit
+    required: true
+    value: 256Mi
