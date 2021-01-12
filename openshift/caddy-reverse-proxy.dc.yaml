@@ -65,6 +65,12 @@ objects:
             log
             redir https://comfort.nrs.gov.bc.ca/app/minesoperatorscreening permanent
         }
+
+        silvicultureoperatorscreening.gov.bc.ca:8080 {
+            encode gzip
+            log
+            redir https://comfort.nrs.gov.bc.ca/app/forestrysectoropscreening permanent
+        }
   - apiVersion: v1
     kind: Service
     metadata:
