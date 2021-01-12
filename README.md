@@ -1,12 +1,5 @@
 
-# Common Forms Toolkit  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE) [![Quality Gate](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/api/badges/gate?key=common-forms-toolkit-master)](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/dashboard?id=common-forms-toolkit-master)
-
-[![Bugs](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/api/badges/measure?key=common-forms-toolkit-master&metric=bugs)](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/dashboard?id=common-forms-toolkit-master)
-[![Vulnerabilities](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/api/badges/measure?key=common-forms-toolkit-master&metric=vulnerabilities)](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/dashboard?id=common-forms-toolkit-master)
-[![Code Smells](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/api/badges/measure?key=common-forms-toolkit-master&metric=code_smells)](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/dashboard?id=common-forms-toolkit-master)
-[![Coverage](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/api/badges/measure?key=common-forms-toolkit-master&metric=coverage)](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/dashboard?id=common-forms-toolkit-master)
-[![Lines](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/api/badges/measure?key=common-forms-toolkit-master&metric=lines)](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/dashboard?id=common-forms-toolkit-master)
-[![Duplication](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/api/badges/measure?key=common-forms-toolkit-master&metric=duplicated_lines_density)](https://sonarqube-vmvfjv-tools.pathfinder.gov.bc.ca/dashboard?id=common-forms-toolkit-master)
+# Common Forms Toolkit [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE) [![img](https://img.shields.io/badge/Lifecycle-Stable-97ca00)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 
 COMFORT is an opinionated toolkit approach to designing and managing multi-tenanted forms.
 
