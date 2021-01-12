@@ -24,6 +24,7 @@ COMFORT is an opinionated toolkit approach to designing and managing multi-tenan
     Jenkinsfile.cicd           - Pull-Request Pipeline
     LICENSE                    - License
     sonar-project.properties   - SonarQube configuration
+    vetur.config.js            - Vetur configuration
 
 ## Documentation
 
