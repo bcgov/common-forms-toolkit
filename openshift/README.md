@@ -176,16 +176,17 @@ oc rollout -n $NAMESPACE latest dc/<buildname>-master
 
 ## Vanity URL Redirects
 
-In the event a vanity *.gov.bc.ca URL is required for "easier" access to a specific form, we will need some form of reverse-proxy to handle 302 redirects on our behalf. At this time, we are leveraging Caddy to achieve this, specifically with the `bcgov/s2i-caddy:v1-stable` image on Openshift. Note that this will only need to be performed in the prod environment once, as this does not apply to any other environments. In order to deploy this reverse proxy, run the following (where APP_NAME should match with the public name and intended path such as `minesoperatorscreening`):
+In the event a vanity *.gov.bc.ca URL is required for "easier" access to a specific form, we will need some form of reverse-proxy to handle 301 redirects on our behalf. At this time, we are leveraging Caddy to achieve this, specifically with the `docker.io/caddy:2.3.0-alpine` image on DockerHub. Note that this will only need to be performed in the prod environment once, as this does not apply to any other environments. In order to deploy this reverse proxy, run the following (`APP_NAME` could be comfort and `INSTANCE` could be master for example):
 
 ```sh
 export NAMESPACE=<yournamespace>
 export APP_NAME=<yourappshortname>
+export INSTANCE=<yourappinstance>
 
-oc process -n $NAMESPACE -f caddy-reverse-proxy.dc.yaml APP_NAME=$APP_NAME -o yaml | oc apply -n $NAMESPACE -f -
+oc process -n $NAMESPACE -f caddy-reverse-proxy.dc.yaml -p APP_NAME=$APP_NAME -p INSTANCE=$INSTANCE -o yaml | oc apply -n $NAMESPACE -f -
 ```
 
-This template will implement a deploymentconfig, a configmap with the appropriate caddyfile settings, and an attached service. A route must be manually created to expose the service after the template has been deployed.
+This template will implement a deploymentconfig, a configmap with the appropriate caddyfile settings, and an attached service. Routes must be manually created with appropriate TLS certificates to expose the service after the template has been deployed.
 
 ### Background Design
 
