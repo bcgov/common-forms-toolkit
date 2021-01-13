@@ -3,39 +3,53 @@ apiVersion: v1
 kind: Template
 labels:
   app: "${APP_NAME}-${JOB_NAME}"
+  app.kubernetes.io/component: app
+  app.kubernetes.io/instance: "${APP_NAME}-${JOB_NAME}"
+  app.kubernetes.io/managed-by: jenkins
+  app.kubernetes.io/name: nodejs
+  app.kubernetes.io/part-of: "${APP_NAME}-${JOB_NAME}"
   template: "${REPO_NAME}-app-dc-template"
 metadata:
   name: "${REPO_NAME}-app-dc"
 objects:
-  # - apiVersion: secops.pathfinder.gov.bc.ca/v1alpha1
-  #   kind: NetworkSecurityPolicy
-  #   metadata:
-  #     name: "${APP_NAME}-${JOB_NAME}-sa-deployer-to-k8s-api-${NAMESPACE}"
-  #   spec:
-  #     description: |
-  #       Allow deployer pods to talk to the internal K8S api
-  #     source:
-  #       - - "$namespace=${NAMESPACE}"
-  #         - "@app:k8s:serviceaccountname=deployer"
-  #     destination:
-  #       - - int:network=internal-cluster-api-endpoint
-  # - kind: NetworkSecurityPolicy
-  #   apiVersion: secops.pathfinder.gov.bc.ca/v1alpha1
-  #   metadata:
-  #     name: "${APP_NAME}-app-${JOB_NAME}-pods-to-egress-${NAMESPACE}"
-  #   spec:
-  #     description: |
-  #       Allow pods to open connections to the internet
-  #     source:
-  #       - - "$namespace=${NAMESPACE}"
-  #         - "app=${APP_NAME}-${JOB_NAME}"
-  #         - "deploymentconfig=${APP_NAME}-app-${JOB_NAME}"
-  #         - role=app
-  #     destination:
-  #       - - ext:network=any
+  - kind: NetworkSecurityPolicy
+    apiVersion: security.devops.gov.bc.ca/v1alpha1
+    metadata:
+      name: "${APP_NAME}-app-${JOB_NAME}-egress-internet"
+    spec:
+      description: |
+        Allow pods to open connections to the internet
+      source:
+        - - "$namespace=${NAMESPACE}"
+          - "app=${APP_NAME}-${JOB_NAME}"
+          - "deploymentconfig=${APP_NAME}-app-${JOB_NAME}"
+          - role=app
+      destination:
+        - - ext:network=any
+  - apiVersion: security.devops.gov.bc.ca/v1alpha1
+    kind: NetworkSecurityPolicy
+    metadata:
+      name: "${APP_NAME}-app-${JOB_NAME}-patroni-${JOB_NAME}-master-comms"
+    spec:
+      description: |
+        Allow pods to open connections to patroni cluster
+      source:
+        - - "$namespace=${NAMESPACE}"
+          - "app=${APP_NAME}-${JOB_NAME}"
+          - "deploymentconfig=${APP_NAME}-app-${JOB_NAME}"
+          - role=app
+        - - "$namespace=${NAMESPACE}"
+          - "openshift.io/deployer-pod.type=hook-pre"
+      destination:
+        - - "$namespace=${NAMESPACE}"
+          - "cluster-name=${JOB_NAME}"
+          - "statefulset=patroni-${JOB_NAME}"
+          - role=master
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
+      annotations:
+        app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"StatefulSet","name":"patroni-${JOB_NAME}"}]'
       name: "${APP_NAME}-app-${JOB_NAME}"
     spec:
       replicas: 2
@@ -87,32 +101,28 @@ objects:
             role: app
         spec:
           containers:
-            - image: docker-registry.default.svc:5000/${NAMESPACE}/${REPO_NAME}-app:${JOB_NAME}
+            - name: app
+              image: "${IMAGE_REGISTRY}/${NAMESPACE}/${REPO_NAME}-app:${JOB_NAME}"
               imagePullPolicy: IfNotPresent
               livenessProbe:
-                failureThreshold: 3
                 httpGet:
                   path: "${ROUTE_PATH}/api"
                   port: 8080
                   scheme: HTTP
                 initialDelaySeconds: 10
-                periodSeconds: 60
-                successThreshold: 1
                 timeoutSeconds: 1
-              name: "app"
+                failureThreshold: 3
               ports:
                 - containerPort: 8080
                   protocol: TCP
               readinessProbe:
-                failureThreshold: 3
                 httpGet:
                   path: "${ROUTE_PATH}/api"
                   port: 8080
                   scheme: HTTP
                 initialDelaySeconds: 10
-                periodSeconds: 10
-                successThreshold: 1
                 timeoutSeconds: 1
+                failureThreshold: 3
               resources:
                 requests:
                   cpu: "${CPU_REQUEST}"
@@ -262,6 +272,11 @@ parameters:
     description: Job identifier (i.e. 'pr-5' OR 'master')
     displayName: Job Branch Name
     required: true
+  - name: IMAGE_REGISTRY
+    description: The base OpenShift docker registry
+    displayName: Docker Image Registry
+    required: true
+    value: image-registry.openshift-image-registry.svc:5000
   - name: NAMESPACE
     description: Target namespace reference (i.e. 'wfezkf-dev')
     displayName: Target Namespace
@@ -277,7 +292,7 @@ parameters:
   - name: CPU_REQUEST
     description: Requested CPU per pod (in millicores ex. 500m)
     displayName: CPU Request
-    value: 100m
+    value: 50m
   - name: MEMORY_LIMIT
     description: Limit Peak Memory per pod (in gigabytes Gi or megabytes Mi ex. 2Gi)
     displayName: Memory Limit
