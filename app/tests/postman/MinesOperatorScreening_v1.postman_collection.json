@@ -1311,7 +1311,7 @@
 		{
 			"id": "8ce027c3-8fc5-47fb-9c94-f6ab9bbced4e",
 			"key": "host",
-			"value": "https://comfort-dev.pathfinder.gov.bc.ca",
+			"value": "https://comfort-dev.apps.silver.devops.gov.bc.ca",
 			"type": "string"
 		},
 		{
@@ -1416,37 +1416,37 @@
 		{
 			"id": "00b57b3c-15e9-4fe5-95cc-0ae46f97ce8b",
 			"key": "notificationEmail",
-			"value": "{\"name\":\"notificationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Industrial Camps Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-006\",\"createdAt\":\"2020-06-02T20:03:43.570Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-02T22:11:09.264Z\"}",
+			"value": "{\"name\":\"notificationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Industrial Camps Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-006\",\"createdAt\":\"2020-06-02T20:03:43.570Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-02T22:11:09.264Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "e9a6882b-19ab-43cc-bb30-67e55e640c3b",
 			"key": "changedNotificationEmail",
-			"value": "{\"name\":\"notificationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-006\",\"createdAt\":\"2020-06-02T20:03:43.570Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-02T22:11:09.264Z\"}",
+			"value": "{\"name\":\"notificationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-006\",\"createdAt\":\"2020-06-02T20:03:43.570Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-02T22:11:09.264Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "432639c7-c23e-42ef-80bd-9ac7e5abaf86",
 			"key": "resetNotificationEmail",
-			"value": "{\"name\":\"notificationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Industrial Camps Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-006\",\"createdAt\":\"2020-06-02T20:03:43.570Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-02T22:11:09.264Z\"}",
+			"value": "{\"name\":\"notificationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Industrial Camps Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-006\",\"createdAt\":\"2020-06-02T20:03:43.570Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-02T22:11:09.264Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "74f069fd-54b3-43a1-9b4c-9ef59473bb8f",
 			"key": "confirmationEmail",
-			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Industrial Camps Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-012\",\"createdAt\":\"2020-06-03T17:53:45.401Z\",\"updatedBy\":\"migration-012\",\"updatedAt\":\"2020-06-03T17:53:45.401Z\"}",
+			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Industrial Camps Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-012\",\"createdAt\":\"2020-06-03T17:53:45.401Z\",\"updatedBy\":\"migration-012\",\"updatedAt\":\"2020-06-03T17:53:45.401Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "49138edb-aadd-4bbf-94bb-a62bf74fb2b6",
 			"key": "changedConfirmationEmail",
-			"value": "{\"name\":\"confirmationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-012\",\"createdAt\":\"2020-06-03T17:53:45.401Z\",\"updatedBy\":\"migration-012\",\"updatedAt\":\"2020-06-03T17:53:45.401Z\"}",
+			"value": "{\"name\":\"confirmationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-012\",\"createdAt\":\"2020-06-03T17:53:45.401Z\",\"updatedBy\":\"migration-012\",\"updatedAt\":\"2020-06-03T17:53:45.401Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "e4fd360b-00bf-4ed5-90de-016e1fcd474d",
 			"key": "resetConfirmationEmail",
-			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Industrial Camps Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-012\",\"createdAt\":\"2020-06-03T17:53:45.401Z\",\"updatedBy\":\"migration-012\",\"updatedAt\":\"2020-06-03T17:53:45.401Z\"}",
+			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"MCAD.RegionalOps@gov.bc.ca\",\"title\":\"Industrial Camps Form Accepted\",\"subject\":\"Industrial Camps Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Industrial Camps Attestation\"},\"createdBy\":\"migration-012\",\"createdAt\":\"2020-06-03T17:53:45.401Z\",\"updatedBy\":\"migration-012\",\"updatedAt\":\"2020-06-03T17:53:45.401Z\"}",
 			"type": "string"
 		}
 	],

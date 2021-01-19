@@ -27,7 +27,7 @@ Application setup details and more are in the [Developer Guide](# https://bcgov.
 
 ### Quick Run Steps
 
-1. Sign up at the [GETOK Common Service Onboarding page](https://getok.pathfinder.gov.bc.ca/getok/about).
+1. Sign up at the [GETOK Common Service Onboarding page](https://getok.nrs.gov.bc.ca/getok/about).
 2. Create ../app/config/local.json.
 3. Run the setup script.
 

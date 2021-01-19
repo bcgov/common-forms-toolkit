@@ -84,7 +84,7 @@ exports.up = function(knex) {
           title: `${FORM_NAME} Form Submission`,
           priority: 'normal',
           messageLinkText: 'Click to view your Submission',
-          messageLinkUrl: `https://comfort-dev.pathfinder.gov.bc.ca/app/${SLUG}/review`
+          messageLinkUrl: `https://comfort-dev.apps.silver.devops.gov.bc.ca/app/${SLUG}/review`
         },
         createdBy: 'migration-006'
       };
@@ -102,7 +102,7 @@ exports.up = function(knex) {
           title: `${FORM_NAME} Form Accepted`,
           priority: 'normal',
           messageLinkText: `Please login to view the details of this ${FORM_NAME} Attestation`,
-          messageLinkUrl: `https://comfort-dev.pathfinder.gov.bc.ca/app/${SLUG}/admin/submission`
+          messageLinkUrl: `https://comfort-dev.apps.silver.devops.gov.bc.ca/app/${SLUG}/admin/submission`
         },
         createdBy: CREATED_BY
       };
@@ -120,7 +120,7 @@ exports.up = function(knex) {
           priority: 'normal',
           message: 'The status of the above attestation has changed. You have been assigned to review this attestation.',
           messageLinkText: `Please login to view the details of this ${FORM_NAME} Attestation`,
-          messageLinkUrl: `https://comfort-dev.pathfinder.gov.bc.ca/app/${SLUG}/admin/submission`
+          messageLinkUrl: `https://comfort-dev.apps.silver.devops.gov.bc.ca/app/${SLUG}/admin/submission`
         },
         createdBy: CREATED_BY
       };
@@ -151,7 +151,7 @@ exports.up = function(knex) {
           priority: 'normal',
           message: `A request for access has been received for your ${FORM_NAME} administration page.`,
           messageLinkText: 'Please Login to view the Access Request(s).',
-          messageLinkUrl: `https://comfort-dev.pathfinder.gov.bc.ca/app/${SLUG}/admin/team`
+          messageLinkUrl: `https://comfort-dev.apps.silver.devops.gov.bc.ca/app/${SLUG}/admin/team`
         },
         createdBy: CREATED_BY
       };
