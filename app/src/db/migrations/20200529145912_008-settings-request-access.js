@@ -15,7 +15,7 @@ exports.up = function(knex) {
           priority: 'normal',
           message: 'A request for access has been received for your Mines Operator Screening administration page.',
           messageLinkText: 'Please Login to view the Access Request(s).',
-          messageLinkUrl: 'https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/team'
+          messageLinkUrl: 'https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/admin/team'
         },
         createdBy: 'migration-008'
       };

@@ -10,7 +10,7 @@
 #%    Minimal, redacted example: ../app/config/sample-local.json
 #%
 #%  Request a GETOK Account and password.
-#%    https://getok.pathfinder.gov.bc.ca/getok/about
+#%    https://getok.nrs.gov.bc.ca/app/about
 #%
 # Prerequisites: Node.js 12, docker, docker compose and python
 # https://bcgov.github.io/common-forms-toolkit/local-infrastructure/

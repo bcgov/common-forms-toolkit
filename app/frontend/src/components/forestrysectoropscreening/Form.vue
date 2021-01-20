@@ -155,6 +155,7 @@ export default {
         { type: 'SILVICULTURE', display: 'Silviculture', enabled: true },
         { type: 'SPACING', display: 'Spacing', enabled: true },
         { type: 'SURVEYING', display: 'Surveying', enabled: true },
+        { type: 'TREE_PLANTING', display: 'Tree Planting', enabled: true },
         {
           type: 'VEGETATION_MANAGEMENT',
           display: 'Vegetation Management',

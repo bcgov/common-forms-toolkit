@@ -13,7 +13,7 @@ exports.up = function(knex) {
           title: 'Industrial Camps Form Receipt',
           priority: 'normal',
           messageLinkText: 'Click to view your Receipt',
-          messageLinkUrl: 'https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/review'
+          messageLinkUrl: 'https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/review'
         },
         createdBy: 'migration-006'
       };
@@ -31,7 +31,7 @@ exports.up = function(knex) {
           title: 'Industrial Camps Form Accepted',
           priority: 'normal',
           messageLinkText: 'Please login to view the details of this Industrial Camps Attestation',
-          messageLinkUrl: 'https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission'
+          messageLinkUrl: 'https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/admin/submission'
         },
         createdBy: 'migration-006'
       };
@@ -49,7 +49,7 @@ exports.up = function(knex) {
           priority: 'normal',
           message: 'The status of the above attestation has changed. You have been assigned to review this attestation.',
           messageLinkText: 'Please login to view the details of this Industrial Camps Attestation',
-          messageLinkUrl: 'https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/admin/submission'
+          messageLinkUrl: 'https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/admin/submission'
         },
         createdBy: 'migration-006'
       };

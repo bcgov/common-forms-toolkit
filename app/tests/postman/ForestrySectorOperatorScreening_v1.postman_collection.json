@@ -1804,19 +1804,19 @@
 		{
 			"id": "cc0b4800-89e4-4478-9553-d476badd2daa",
 			"key": "confirmationEmail",
-			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"FP.Engagement@gov.bc.ca\",\"title\":\"Forestry Sector Form Accepted\",\"subject\":\"Forestry Sector Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/forestrysectoropscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Forestry Sector Attestation\"},\"createdBy\":\"migration-010\",\"createdAt\":\"2020-06-03T22:06:37.610Z\",\"updatedBy\":\"development\",\"updatedAt\":\"2020-06-04T15:34:56.175Z\"}",
+			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"FP.Engagement@gov.bc.ca\",\"title\":\"Forestry Sector Form Accepted\",\"subject\":\"Forestry Sector Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/forestrysectoropscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Forestry Sector Attestation\"},\"createdBy\":\"migration-010\",\"createdAt\":\"2020-06-03T22:06:37.610Z\",\"updatedBy\":\"development\",\"updatedAt\":\"2020-06-04T15:34:56.175Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "119a4e6c-b870-4b7f-94a3-cbcda0078180",
 			"key": "changedConfirmationEmail",
-			"value": "{\"name\":\"confirmationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"FP.Engagement@gov.bc.ca\",\"title\":\"Forestry Sector Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/forestrysectoropscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Forestry Sector Attestation\"},\"createdBy\":\"migration-010\",\"createdAt\":\"2020-06-03T22:06:37.610Z\",\"updatedBy\":\"development\",\"updatedAt\":\"2020-06-04T15:34:56.175Z\"}",
+			"value": "{\"name\":\"confirmationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"FP.Engagement@gov.bc.ca\",\"title\":\"Forestry Sector Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/forestrysectoropscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Forestry Sector Attestation\"},\"createdBy\":\"migration-010\",\"createdAt\":\"2020-06-03T22:06:37.610Z\",\"updatedBy\":\"development\",\"updatedAt\":\"2020-06-04T15:34:56.175Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "3c5d9774-e946-4ba2-b188-8200ca2b8a1e",
 			"key": "resetConfirmationEmail",
-			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"FP.Engagement@gov.bc.ca\",\"title\":\"Forestry Sector Form Accepted\",\"subject\":\"Forestry Sector Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/forestrysectoropscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Forestry Sector Attestation\"},\"createdBy\":\"migration-010\",\"createdAt\":\"2020-06-03T22:06:37.610Z\",\"updatedBy\":\"development\",\"updatedAt\":\"2020-06-04T15:34:56.175Z\"}",
+			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"FP.Engagement@gov.bc.ca\",\"title\":\"Forestry Sector Form Accepted\",\"subject\":\"Forestry Sector Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/forestrysectoropscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Forestry Sector Attestation\"},\"createdBy\":\"migration-010\",\"createdAt\":\"2020-06-03T22:06:37.610Z\",\"updatedBy\":\"development\",\"updatedAt\":\"2020-06-04T15:34:56.175Z\"}",
 			"type": "string"
 		}
 	],

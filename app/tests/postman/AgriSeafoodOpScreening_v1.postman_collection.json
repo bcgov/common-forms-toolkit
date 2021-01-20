@@ -1711,19 +1711,19 @@
 		{
 			"id": "264b250a-72af-4d75-804b-8fd34d33e6dc",
 			"key": "confirmationEmail",
-			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"title\":\"Agriculture and Seafood Form Accepted\",\"subject\":\"Agriculture and Seafood Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/agriseafoodopscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Agriculture and Seafood Attestation\"},\"createdBy\":\"migration-011\",\"createdAt\":\"2020-06-04T15:02:53.631Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-05T22:56:02.649Z\"}",
+			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"title\":\"Agriculture and Seafood Form Accepted\",\"subject\":\"Agriculture and Seafood Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort.nrs.gov.bc.ca/app/agriseafoodopscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Agriculture and Seafood Attestation\"},\"createdBy\":\"migration-011\",\"createdAt\":\"2020-06-04T15:02:53.631Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-05T22:56:02.649Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "e7b3e4f1-22e0-4e38-966e-d2a6d42fb02f",
 			"key": "changedConfirmationEmail",
-			"value": "{\"name\":\"confirmationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"title\":\"Agriculture and Seafood Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/agriseafoodopscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Agriculture and Seafood Attestation\"},\"createdBy\":\"migration-011\",\"createdAt\":\"2020-06-04T15:02:53.631Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-05T22:56:02.649Z\"}",
+			"value": "{\"name\":\"confirmationEmail\",\"enabled\":false,\"config\":{\"to\":\"newem@il.com\",\"from\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"title\":\"Agriculture and Seafood Form Accepted\",\"subject\":\"Ignore this please\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/agriseafoodopscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Agriculture and Seafood Attestation\"},\"createdBy\":\"migration-011\",\"createdAt\":\"2020-06-04T15:02:53.631Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-05T22:56:02.649Z\"}",
 			"type": "string"
 		},
 		{
 			"id": "29cd3649-b510-4fa8-9c36-35df4ad0cd28",
 			"key": "resetConfirmationEmail",
-			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"title\":\"Agriculture and Seafood Form Accepted\",\"subject\":\"Agriculture and Seafood Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.pathfinder.gov.bc.ca/app/agriseafoodopscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Agriculture and Seafood Attestation\"},\"createdBy\":\"migration-011\",\"createdAt\":\"2020-06-04T15:02:53.631Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-05T22:56:02.649Z\"}",
+			"value": "{\"name\":\"confirmationEmail\",\"enabled\":true,\"config\":{\"to\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"from\":\"NR.CommonServiceShowcase@gov.bc.ca\",\"title\":\"Agriculture and Seafood Form Accepted\",\"subject\":\"Agriculture and Seafood Form Accepted\",\"priority\":\"normal\",\"template\":\"confirmation-number-email.html\",\"messageLinkUrl\":\"https://comfort-dev.apps.silver.devops.gov.bc.ca/app/agriseafoodopscreening/admin/submission\",\"messageLinkText\":\"Please login to view the details of this Agriculture and Seafood Attestation\"},\"createdBy\":\"migration-011\",\"createdAt\":\"2020-06-04T15:02:53.631Z\",\"updatedBy\":\"jsherman@idir\",\"updatedAt\":\"2020-06-05T22:56:02.649Z\"}",
 			"type": "string"
 		}
 	],

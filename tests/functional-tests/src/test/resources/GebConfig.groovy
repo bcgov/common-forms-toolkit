@@ -35,7 +35,7 @@ import com.browserstack.local.Local
 Map env = System.getenv()
 baseUrl = env['BASEURL']
 if (!baseUrl) {
-	baseUrl = "https://comfort-dev.pathfinder.gov.bc.ca/app/"
+	baseUrl = "https://comfort-dev.apps.silver.devops.gov.bc.ca/app/"
 }
 println "BaseURL: ${baseUrl}"
 println "--------------------------"

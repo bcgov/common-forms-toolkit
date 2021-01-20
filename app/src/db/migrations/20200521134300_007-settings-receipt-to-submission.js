@@ -10,7 +10,7 @@ exports.up = function (knex) {
         title: 'Industrial Camps Form Submission',
         priority: 'normal',
         messageLinkText: 'Click to view your Submission',
-        messageLinkUrl: 'https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/review'
+        messageLinkUrl: 'https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/review'
       };
       return knex(`${PREFIX}_settings`).where('name', 'submissionEmail').update({
         config: config,
@@ -29,7 +29,7 @@ exports.down = function (knex) {
         title: 'Industrial Camps Form Receipt',
         priority: 'normal',
         messageLinkText: 'Click to view your Receipt',
-        messageLinkUrl: 'https://comfort-dev.pathfinder.gov.bc.ca/app/minesoperatorscreening/review'
+        messageLinkUrl: 'https://comfort-dev.apps.silver.devops.gov.bc.ca/app/minesoperatorscreening/review'
       };
       return knex(`${PREFIX}_settings`).where('name', 'submissionEmail').update({config: config, updatedBy: null});
     });
