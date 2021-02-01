@@ -29,8 +29,8 @@
         <v-col cols="12" sm="10" lg="11">
           <h4 class="mb-4">
             <strong>
-              Read
-              <em>{{ docTitle }}</em>
+              Read the Public Health Officer guidance document:
+              <em>{{ doc1.docTitle }}</em>
             </strong>
           </h4>
           <p>
@@ -43,6 +43,32 @@
         </v-col>
       </v-row>
     </v-container>
+    <hr />
+
+    <v-container>
+      <v-row no-gutters>
+        <v-col cols="12" sm="2" lg="1" class="hide-on-review">
+          <v-avatar color="#003366" size="50">
+            <span class="white--text headline">2</span>
+          </v-avatar>
+        </v-col>
+        <v-col cols="12" sm="10" lg="11">
+          <h4 class="mb-4">
+            <strong>
+              If you are in Region of the Northern Health Authority, please read the Public Health Officer order:
+              <em>{{ doc2.docTitle }}</em> issued on January 12, 2021
+            </strong>
+          </h4>
+          <p>
+            <a
+              href="https://www2.gov.bc.ca/assets/gov/health/about-bc-s-health-care-system/office-of-the-provincial-health-officer/covid-19/covid-19-pho-order-industrial-camps-northern-health.pdf"
+              target="_blank"
+              data-test="btn-form-health-pdf-link-2"
+            >Download PDF</a>
+          </p>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <div class="hide-on-review">
       <hr />
@@ -50,7 +76,7 @@
         <v-row no-gutters>
           <v-col cols="12" sm="2" lg="1" class="hide-on-review">
             <v-avatar color="#003366" size="50">
-              <span class="white--text headline">2</span>
+              <span class="white--text headline">3</span>
             </v-avatar>
           </v-col>
           <v-col cols="12" sm="10" lg="11">
@@ -90,7 +116,7 @@
         <v-row no-gutters>
           <v-col cols="12" sm="2" lg="1" class="hide-on-review">
             <v-avatar color="#003366" size="50">
-              <span class="white--text headline">3</span>
+              <span class="white--text headline">4</span>
             </v-avatar>
           </v-col>
           <v-col cols="12" sm="10" lg="11">
@@ -156,9 +182,16 @@ export default {
   name: 'MinesAttestationStep1',
   data() {
     return {
-      docTitle:
-        'Protecting Workers, Contractors, and Employers Working in the Natural Resource Sector During the COVID-19 Pandemic',
-      docShortTitle: 'COVID-19 Guidelines for Natural Resource Sector'
+      doc1:
+        {
+          docTitle: 'Protecting Workers, Contractors, and Employers Working in the Natural Resource Sector During the COVID-19 Pandemic',
+          docShortTitle: 'COVID-19 Guidelines for Natural Resource Sector'
+        },
+      doc2:
+        {
+          docTitle: 'Resource Sector Worksites and Industrial Camps in the Region of the Northern Health Authority',
+          docShortTitle: 'Resource Sector Worksites and Industrial Camps in the Region of the Northern Health Authority'
+        }
     };
   },
   methods: {

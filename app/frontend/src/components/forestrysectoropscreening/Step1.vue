@@ -393,10 +393,10 @@
 
         <hr />
 
-        <h3 class="mt-6 mb-2">Name of Licencee(s)</h3>
+        <h3 class="mt-6 mb-2">Name of Organization(s)</h3>
         <v-row>
           <v-col cols="12">
-            <label>Provide the name or names of the licencee(s) that you are conducting the work for</label>
+            <label>Provide the name of the organization(s) that you are conducting the work for (ex.’s BC Timber Sales, Forest Company, etc.)</label>
             <v-text-field
               dense
               flat
@@ -698,7 +698,7 @@ export default {
         v => v > 0 || '# of workers must be greater than 0',
         v => v < 9999 || '# of workers must 9999 or less'
       ],
-      licenceesRules: [v => !!v || 'Name of licencee(s) required'],
+      licenceesRules: [v => !!v || 'Name of Organizations(s) is required'],
       tentDetailsRules: [
         v => !v || v.length <= 255 || 'Details must be 255 characters or less'
       ],
