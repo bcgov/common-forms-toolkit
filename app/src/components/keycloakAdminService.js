@@ -5,19 +5,6 @@ const Problem = require('api-problem');
 
 const errorToProblem = require('./errorToProblem');
 
-const refreshToken = (svc) => setInterval(async () => {
-  // just in case we didn't go through the initialization phase.
-  await svc.initialize(false);
-  try {
-    const refreshToken = svc._tokenSet.refresh_token;
-    svc._tokenSet = await svc._client.refresh(refreshToken);
-    svc._kcAdminClient.setAccessToken(svc._tokenSet.access_token);
-  } catch (e) {
-    log.error('KeycloakAdminService.refreshToken', `Error refreshing token. Re-initializing/authorizing admin client. ${e.message}`);
-    await svc.initialize(true);
-  }
-}, 58 * 1000); // 58 seconds
-
 const trimUserData = (data, nullDataValue = []) => {
   if (!data) return nullDataValue;
 
@@ -118,7 +105,6 @@ class KeycloakAdminService {
         return false;
       }
       this._initialized = true;
-      refreshToken(this); // start the token auto-refresh
     }
     return this._initialized;
   }
