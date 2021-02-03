@@ -106,6 +106,23 @@ class Attestation extends AttestationModels.AttestationTransportation {
     return PREFIX;
   }
 
+  static get jsonSchema() {
+    const schemaProperties = {...AttestationModels.AttestationTransportationSchema.properties};
+    // add new properties
+    schemaProperties.transportationFaceCovering = {type: 'boolean'};
+    schemaProperties.distancingStayInAccom = {type: 'boolean'};
+    schemaProperties.trainingDailyChecks = {type: 'boolean'};
+    return {
+      type: 'object',
+      required: Object.keys(schemaProperties).map(x => x),
+      properties: {
+        ...schemaProperties,
+        ...CommonModels.stamps
+      },
+      additionalProperties: false
+    };
+  }
+
 }
 
 class Business extends AttestationModels.Business {

@@ -35,6 +35,12 @@
           class="hide-on-review"
         >Industrial Camp Operators must provide workers with training in their language about the risk of COVID-19, safe work practices, and how to report symptoms.</p>
         <v-checkbox
+          v-model="trainingDailyChecks"
+          data-test="cb-form-trainingDailyChecks"
+          :readonly="reviewMode"
+          label="I have established daily health checks for workers"
+        ></v-checkbox>
+        <v-checkbox
           v-model="trainingCovid19"
           data-test="cb-form-trainingCovid19"
           :readonly="reviewMode"
@@ -138,6 +144,14 @@ export default {
     },
 
     // Training
+    trainingDailyChecks: {
+      get() {
+        return this.attestation.trainingDailyChecks;
+      },
+      set(value) {
+        this.updateAttestation({ ['trainingDailyChecks']: value });
+      }
+    },
     trainingCovid19: {
       get() {
         return this.attestation.trainingCovid19;
