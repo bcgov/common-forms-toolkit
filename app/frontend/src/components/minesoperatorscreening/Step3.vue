@@ -210,6 +210,12 @@
           :readonly="reviewMode"
           label="I have physical barriers like face shields or masks for situations where physical distancing is not possible."
         ></v-checkbox>
+        <v-checkbox
+          v-model="distancingStayInAccom"
+          data-test="cb-form-distancingStayInAccom"
+          :readonly="reviewMode"
+          label="I have taken steps to provide support for workers to remain at their accommodation when not working."
+        ></v-checkbox>
       </div>
     </div>
 
@@ -267,6 +273,12 @@
           data-test="cb-form-transportationCleaningDistancing"
           :readonly="reviewMode"
           label="Procedures for frequent vehicle cleaning and physical distancing or use personal protective equipment have been developed and communicated to the workers prior to being transported to the worksite."
+        ></v-checkbox>
+        <v-checkbox
+          v-model="transportationFaceCovering"
+          data-test="cb-form-transportationFaceCovering"
+          :readonly="reviewMode"
+          label="Occupants in any vehicle (driver and passengers) must wear face coverings."
         ></v-checkbox>
       </div>
     </div>
@@ -465,6 +477,14 @@ export default {
         this.updateAttestation({ ['distancingFaceShields']: value });
       }
     },
+    distancingStayInAccom: {
+      get() {
+        return this.attestation.distancingStayInAccom;
+      },
+      set(value) {
+        this.updateAttestation({ ['distancingStayInAccom']: value });
+      }
+    },
 
     // Cleaning/Disinfecting
     disinfectingSchedule: {
@@ -523,6 +543,14 @@ export default {
       },
       set(value) {
         this.updateAttestation({ ['transportationCleaningDistancing']: value });
+      }
+    },
+    transportationFaceCovering: {
+      get() {
+        return this.attestation.transportationFaceCovering;
+      },
+      set(value) {
+        this.updateAttestation({ ['transportationFaceCovering']: value });
       }
     }
   },
