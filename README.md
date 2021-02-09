@@ -1,6 +1,10 @@
 
 # Common Forms Toolkit [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE) [![img](https://img.shields.io/badge/Lifecycle-Stable-97ca00)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 
+![Tests](https://github.com/bcgov/common-forms-toolkit/workflows/Tests/badge.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e0e75b3c060a06738953/maintainability)](https://codeclimate.com/github/bcgov/common-forms-toolkit/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e0e75b3c060a06738953/test_coverage)](https://codeclimate.com/github/bcgov/common-forms-toolkit/test_coverage)
+
 COMFORT is an opinionated toolkit approach to designing and managing multi-tenanted forms.
 
 ## Directory Structure
@@ -23,7 +27,6 @@ COMFORT is an opinionated toolkit approach to designing and managing multi-tenan
     Jenkinsfile                - Top-level Pipeline
     Jenkinsfile.cicd           - Pull-Request Pipeline
     LICENSE                    - License
-    sonar-project.properties   - SonarQube configuration
     vetur.config.js            - Vetur configuration
 
 ## Documentation

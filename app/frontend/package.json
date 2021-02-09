@@ -44,7 +44,6 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
     "eslint-plugin-vuetify": "^1.0.0-beta.6",
-    "jest-sonar-reporter": "^2.0.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
     "sass": "^1.26.10",
@@ -52,8 +51,5 @@
     "vue-cli-plugin-vuetify": "^2.0.7",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.6.0"
-  },
-  "jestSonar": {
-    "reportPath": "coverage"
   }
 }
