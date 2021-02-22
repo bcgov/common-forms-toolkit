@@ -25,15 +25,15 @@ objects:
   - apiVersion: networking.k8s.io/v1
     kind: NetworkPolicy
     metadata:
-      name: "allow-patroni-${JOB_NAME}-to-patroni-${JOB_NAME}"
+      name: "allow-patroni-${INSTANCE}-to-patroni-${INSTANCE}-cluster"
     spec:
       # Allow Patroni pods to talk to its cluster
       ingress:
         - from:
             - podSelector:
                 matchLabels:
-                  cluster-name: "${JOB_NAME}"
-                  statefulset: "patroni-${JOB_NAME}"
+                  cluster-name: "${INSTANCE}"
+                  statefulset: "patroni-${INSTANCE}"
           ports:
             - port: 5432
               protocol: TCP
@@ -41,8 +41,8 @@ objects:
               protocol: TCP
       podSelector:
         matchLabels:
-          cluster-name: "${JOB_NAME}"
-          statefulset: "patroni-${JOB_NAME}"
+          cluster-name: "${INSTANCE}"
+          statefulset: "patroni-${INSTANCE}"
   - apiVersion: v1
     kind: Service
     metadata:
