@@ -21,20 +21,6 @@ labels:
   app.openshift.io/runtime: golang
   template: "${APP_NAME}-reverse-proxy-template"
 objects:
-  # - kind: NetworkSecurityPolicy
-  #   apiVersion: security.devops.gov.bc.ca/v1alpha1
-  #   metadata:
-  #     name: "${APP_NAME}-reverse-proxy-egress-internet"
-  #   spec:
-  #     description: |
-  #       Allow app pods to open connections to the internet
-  #     source:
-  #       - - "$namespace=${NAMESPACE}"
-  #         - "app=${APP_NAME}-reverse-proxy"
-  #         - "deploymentconfig=${APP_NAME}-reverse-proxy"
-  #         - role=reverse-proxy
-  #     destination:
-  #       - - ext:network=any
   - apiVersion: v1
     kind: ConfigMap
     metadata:
@@ -165,10 +151,6 @@ parameters:
     description: The name of this instance of the application
     displayName: Application Instance Name
     required: true
-  # - name: NAMESPACE
-  #   description: Target namespace reference (i.e. 'a7f51d-dev')
-  #   displayName: Target Namespace
-  #   required: true
   - name: REPLICAS
     description: The number of StatefulSet replicas to use.
     displayName: Replicas
