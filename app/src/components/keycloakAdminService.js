@@ -1,22 +1,23 @@
-const { Issuer } = require('openid-client');
+// const { Issuer } = require('openid-client');
 const KeycloakAdminClient = require('keycloak-admin').default;
 const log = require('npmlog');
 const Problem = require('api-problem');
 
 const errorToProblem = require('./errorToProblem');
 
-const refreshToken = (svc) => setInterval(async () => {
-  // just in case we didn't go through the initialization phase.
-  await svc.initialize(false);
-  try {
-    const refreshToken = svc._tokenSet.refresh_token;
-    svc._tokenSet = await svc._client.refresh(refreshToken);
-    svc._kcAdminClient.setAccessToken(svc._tokenSet.access_token);
-  } catch (e) {
-    log.error('KeycloakAdminService.refreshToken', `Error refreshing token. Re-initializing/authorizing admin client. ${e.message}`);
-    await svc.initialize(true);
-  }
-}, 58 * 1000); // 58 seconds
+// This is DOSing SSO
+// const refreshToken = (svc) => setInterval(async () => {
+//   // just in case we didn't go through the initialization phase.
+//   await svc.initialize(false);
+//   try {
+//     const refreshToken = svc._tokenSet.refresh_token;
+//     svc._tokenSet = await svc._client.refresh(refreshToken);
+//     svc._kcAdminClient.setAccessToken(svc._tokenSet.access_token);
+//   } catch (e) {
+//     log.error('KeycloakAdminService.refreshToken', `Error refreshing token. Re-initializing/authorizing admin client. ${e.message}`);
+//     await svc.initialize(true);
+//   }
+// }, 58 * 1000); // 58 seconds
 
 const trimUserData = (data, nullDataValue = []) => {
   if (!data) return nullDataValue;
@@ -72,67 +73,77 @@ class KeycloakAdminService {
     this.initialize(true);
   }
 
+  // Get a token to auth the admin lib
+  async _auth() {
+    try {
+      await this._kcAdminClient.auth({
+        grantType: this._grantType,
+        clientId: this._clientId,
+        clientSecret: this._clientSecret
+      });
+
+    } catch (err) {
+      log.error('KeycloakAdminService._auth', `Error during authorization of service credentials: ${err.message}`);
+      throw (err);
+    }
+  }
+
   async initialize(force = false) {
     if (force === true) this._initialized = false;
     if (!this._initialized) {
       // try to do a straight initialization of the client with configured credentials.
       // service should be good to go right away.
       try {
-        await this._kcAdminClient.auth({
-          grantType: this._grantType,
-          clientId: this._clientId,
-          clientSecret: this._clientSecret
-        });
+        await this._auth();
       } catch (err) {
-        log.error('KeycloakAdminService.initialize', `Error during authorization of service credentials: ${err.message}`);
+        log.error('KeycloakAdminService.initialize', `Error initializing with service credentials: ${err.message}`);
         return false;
       }
       //
       // now, get set up so we can keep refreshing the token for realm admin service...
       //
-      try {
-        this._keycloakIssuer = await Issuer.discover(this._issuerUrl);
-      } catch (err) {
-        log.error('KeycloakAdminService.initialize', `Error during discovery of issuer: ${err.message}`);
-        return false;
-      }
+      // try {
+      //   this._keycloakIssuer = await Issuer.discover(this._issuerUrl);
+      // } catch (err) {
+      //   log.error('KeycloakAdminService.initialize', `Error during discovery of issuer: ${err.message}`);
+      //   return false;
+      // }
 
-      try {
-        this._client = new this._keycloakIssuer.Client({
-          client_id: this._clientId,
-          client_secret: this._clientSecret
-        });
-      } catch (err) {
-        log.error('KeycloakAdminService.initialize', `Error creating client: ${err.message}`);
-        return false;
-      }
+      // try {
+      //   this._client = new this._keycloakIssuer.Client({
+      //     client_id: this._clientId,
+      //     client_secret: this._clientSecret
+      //   });
+      // } catch (err) {
+      //   log.error('KeycloakAdminService.initialize', `Error creating client: ${err.message}`);
+      //   return false;
+      // }
 
-      try {
-        this._tokenSet = await this._client.grant({
-          grant_type: this._grantType,
-          client_id: this._clientId,
-          client_secret: this._clientSecret
-        });
-      } catch (err) {
-        log.error('KeycloakAdminService.initialize', `Error getting tokens: ${err.message}`);
-        return false;
-      }
+      // try {
+      //   this._tokenSet = await this._client.grant({
+      //     grant_type: this._grantType,
+      //     client_id: this._clientId,
+      //     client_secret: this._clientSecret
+      //   });
+      // } catch (err) {
+      //   log.error('KeycloakAdminService.initialize', `Error getting tokens: ${err.message}`);
+      //   return false;
+      // }
       this._initialized = true;
-      refreshToken(this); // start the token auto-refresh
     }
     return this._initialized;
   }
 
   _problem(status, title, detail) {
-    throw new Problem(status, title, {detail: detail});
+    throw new Problem(status, title, { detail: detail });
   }
 
   _notFoundProblem(type, id) {
-    throw new Problem(404, 'Not found', {detail: `Could not find ${type} with id ${id}.`});
+    throw new Problem(404, 'Not found', { detail: `Could not find ${type} with id ${id}.` });
   }
 
   async _findClient(id) {
-    const result = await this._kcAdminClient.clients.findOne({id: id});
+    const result = await this._kcAdminClient.clients.findOne({ id: id });
     if (!result) {
       this._notFoundProblem('client', id);
     }
@@ -140,7 +151,7 @@ class KeycloakAdminService {
   }
 
   async _findRole(id) {
-    const result = await this._kcAdminClient.roles.findOneById({id: id});
+    const result = await this._kcAdminClient.roles.findOneById({ id: id });
     if (!result) {
       this._notFoundProblem('role', id);
     }
@@ -148,7 +159,7 @@ class KeycloakAdminService {
   }
 
   async _findUser(id) {
-    const result = await this._kcAdminClient.users.findOne({id: id});
+    const result = await this._kcAdminClient.users.findOne({ id: id });
     if (!result) {
       this._notFoundProblem('user', id);
     }
@@ -157,6 +168,9 @@ class KeycloakAdminService {
 
   async findClients(name, includeRoles = false) {
     try {
+      // TEMP: refresh loop was DOSing SSO
+      await this._auth();
+
       let result = await this._kcAdminClient.clients.find();
       let clients = trimClientData(result);
       if (name) {
@@ -164,7 +178,7 @@ class KeycloakAdminService {
       }
       if (includeRoles) {
         for (const c of clients) {
-          const roles = await this._kcAdminClient.clients.listRoles({id: c.id});
+          const roles = await this._kcAdminClient.clients.listRoles({ id: c.id });
           c.roles = roles;
         }
       }
@@ -176,34 +190,40 @@ class KeycloakAdminService {
 
   async getClient(id, includeRoles = false, includeUsers = false, includeUserRoles = false) {
     try {
+      // TEMP: refresh loop was DOSing SSO
+      await this._auth();
+
       const result = await this._findClient(id);
       const client = trimClientData(result);
       client.roles = [];
       if (includeRoles) {
-        client.roles = await this._kcAdminClient.clients.listRoles({id: id});
+        client.roles = await this._kcAdminClient.clients.listRoles({ id: id });
         for (const r of client.roles) {
           r.users = [];
           if (includeUsers) {
-            const users = await this._kcAdminClient.clients.findUsersWithRole({id: id, roleName: r.name});
+            const users = await this._kcAdminClient.clients.findUsersWithRole({ id: id, roleName: r.name });
             r.users = trimUserData(users);
             for (const ur of r.users) {
-              ur.roles =[];
+              ur.roles = [];
               if (includeUserRoles) {
-                ur.roles = await this._kcAdminClient.users.listClientRoleMappings({id: ur.id, clientUniqueId: id});
+                ur.roles = await this._kcAdminClient.users.listClientRoleMappings({ id: ur.id, clientUniqueId: id });
               }
             }
           }
         }
       }
       return client;
-    } catch(err) {
+    } catch (err) {
       errorToProblem(SERVICE, err);
     }
   }
 
   async findUsers(search) {
     try {
-      const result = await this._kcAdminClient.users.find({search: search});
+      // TEMP: refresh loop was DOSing SSO
+      await this._auth();
+
+      const result = await this._kcAdminClient.users.find({ search: search });
       return trimUserData(result);
     } catch (err) {
       errorToProblem(SERVICE, err);
@@ -212,56 +232,71 @@ class KeycloakAdminService {
 
   async getUser(id) {
     try {
+      // TEMP: refresh loop was DOSing SSO
+      await this._auth();
+
       const result = await this._findUser(id);
       return trimUserData(result);
-    } catch(err) {
+    } catch (err) {
       errorToProblem(SERVICE, err);
     }
   }
 
   async getClientUser(clientId, userId, includeRoles = false) {
     try {
+      // TEMP: refresh loop was DOSing SSO
+      await this._auth();
+
       const result = await this._findUser(userId);
       const user = trimUserData(result);
       if (includeRoles) {
-        user.roles = await this._kcAdminClient.users.listClientRoleMappings({id: userId, clientUniqueId: clientId});
+        user.roles = await this._kcAdminClient.users.listClientRoleMappings({ id: userId, clientUniqueId: clientId });
       }
       return user;
-    } catch(err) {
+    } catch (err) {
       errorToProblem(SERVICE, err);
     }
   }
 
   async addClientRoleMappings(clientId, users, roles) {
     try {
+      // TEMP: refresh loop was DOSing SSO
+      await this._auth();
+
       const roleList = roles.map(x => (({ id, name }) => ({ id, name }))(x));
       for (const u of users) {
-        await this._kcAdminClient.users.addClientRoleMappings({id: u.id, clientUniqueId: clientId, roles: roleList});
+        await this._kcAdminClient.users.addClientRoleMappings({ id: u.id, clientUniqueId: clientId, roles: roleList });
       }
-    } catch(err) {
+    } catch (err) {
       errorToProblem(SERVICE, err);
     }
   }
 
   async removeClientRoleMappings(clientId, users, roles) {
     try {
+      // TEMP: refresh loop was DOSing SSO
+      await this._auth();
+
       const roleList = roles.map(x => (({ id, name }) => ({ id, name }))(x));
       for (const u of users) {
-        await this._kcAdminClient.users.delClientRoleMappings({id: u.id, clientUniqueId: clientId, roles: roleList});
+        await this._kcAdminClient.users.delClientRoleMappings({ id: u.id, clientUniqueId: clientId, roles: roleList });
       }
-    } catch(err) {
+    } catch (err) {
       errorToProblem(SERVICE, err);
     }
   }
 
   async getClientRoleByName(clientId, name) {
     try {
-      const role = await this._kcAdminClient.clients.findRole({id: clientId, roleName: name});
+      // TEMP: refresh loop was DOSing SSO
+      await this._auth();
+
+      const role = await this._kcAdminClient.clients.findRole({ id: clientId, roleName: name });
       if (!role) {
         this._notFoundProblem('role', name);
       }
       return role;
-    } catch(err) {
+    } catch (err) {
       errorToProblem(SERVICE, err);
     }
   }
