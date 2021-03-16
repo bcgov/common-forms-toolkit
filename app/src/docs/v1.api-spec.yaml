@@ -805,7 +805,7 @@ paths:
       summary: Send Email notification to Admin
       description: >-
         Uses BC Gov Email Messaging API: <br />
-        https://ches.pathfinder.gov.bc.ca/api/v1/docs/#operation/postMerge
+        https://ches.nrs.gov.bc.ca/api/v1/docs/#operation/postMerge
       operationId: sendSubmissionEmail
       tags:
         - Submissions
