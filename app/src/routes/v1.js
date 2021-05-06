@@ -5,6 +5,7 @@ const router = require('express').Router();
 const yaml = require('js-yaml');
 
 const agriSeafoodOpScreening = require('../forms/attestations/agriseafoodopscreening');
+const farmOpScreening = require('../forms/attestations/farmopscreening');
 const forestrySectorOperatorScreening = require('../forms/attestations/forestrysectoroperatorscreening');
 const form = require('../forms/form');
 const minesOperatorScreening = require('../forms/attestations/minesoperatorscreening');
@@ -18,6 +19,7 @@ const getSpec = () => {
 };
 
 const agriSeafoodOpScreeningPath = agriSeafoodOpScreening.mount(router);
+const farmOpScreeningPath = farmOpScreening.mount(router);
 const forestrySectorOperatorScreeningPath = forestrySectorOperatorScreening.mount(router);
 const formPath = form.mount(router);
 const minesOperatorScreeningPath = minesOperatorScreening.mount(router);
@@ -28,6 +30,7 @@ router.get('/', (_req, res) => {
     endpoints: [
       agriSeafoodOpScreeningPath,
       '/docs',
+      farmOpScreeningPath,
       forestrySectorOperatorScreeningPath,
       formPath,
       minesOperatorScreeningPath

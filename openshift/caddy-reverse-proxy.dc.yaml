@@ -40,6 +40,12 @@ objects:
             redir https://comfort.nrs.gov.bc.ca/app/agriseafoodopscreening permanent
         }
 
+        farmoperatorscreening.gov.bc.ca:8080 {
+            encode gzip
+            log
+            redir https://comfort.nrs.gov.bc.ca/app/farmoperatorscreening permanent
+        }
+
         forestrysectoropscreening.gov.bc.ca:8080 {
             encode gzip
             log
