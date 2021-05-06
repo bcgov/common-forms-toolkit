@@ -60,6 +60,14 @@ export default {
       },
       {
         enabled: true,
+        linkAdminName: 'FarmOpScreeningAdmin',
+        linkName: 'FarmOpScreeningForm',
+        resource: AppClients.FARMOPSCREENING,
+        roles: [],
+        title: 'Farm Operator Screening'
+      },
+      {
+        enabled: true,
         linkAdminName: 'ForestrySectorOpScreeningAdmin',
         linkName: 'ForestrySectorOpScreeningForm',
         resource: AppClients.FORESTRYSECTOROPSCREENING,
