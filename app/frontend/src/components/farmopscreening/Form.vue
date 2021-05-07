@@ -3,7 +3,9 @@
     <div v-if="step < 1">
       <Landing :formName="formName" />
       <v-form ref="opTypeForm" v-model="landingValid">
-        <v-container>
+        <!-- this dropdown is hiddenfor the Farm operator form
+          value 'AGRICULTURE' is hardcoded as a default in the form's store -->
+        <v-container class="d-none">
           <v-row>
             <v-col
               cols="12"

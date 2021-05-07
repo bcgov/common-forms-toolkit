@@ -6,13 +6,22 @@
       <v-alert v-if="getFormError" type="error" tile dense>{{ getFormError }}</v-alert>
 
       <div v-if="!gettingForm && attestation">
-        <SubmissionHeader
+
+        <!-- Operation Type has been hidden for this form -->
+        <!-- <SubmissionHeader
           :attestation="attestation"
           :business="business"
           :formName="formName"
           :location="location"
           :submissionId="submissionId"
           :operationType="operationType"
+        /> -->
+        <SubmissionHeader
+          :attestation="attestation"
+          :business="business"
+          :formName="formName"
+          :location="location"
+          :submissionId="submissionId"
         />
 
         <v-row>

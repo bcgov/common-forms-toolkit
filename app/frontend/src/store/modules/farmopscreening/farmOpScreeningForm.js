@@ -73,7 +73,8 @@ export default {
     submissionError: '',
 
     // Form schema
-    type: '',
+    // 'operation type' form field is hidden, default set
+    type: 'AGRICULTURE',
     business: {
       name: '',
       orgBookId: '',
