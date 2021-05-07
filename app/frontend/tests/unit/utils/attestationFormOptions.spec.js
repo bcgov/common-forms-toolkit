@@ -3,10 +3,11 @@ import * as attestationFormOptions from '@/utils/attestationFormOptions';
 
 describe('Attestation Form Options', () => {
   describe('Options', () => {
-    it('contains all 3 forms', () => {
+    it('contains all 4 forms', () => {
       expect(attestationFormOptions.Options).toBeTruthy();
-      expect(Object.keys(attestationFormOptions.Options).length).toBe(3);
+      expect(Object.keys(attestationFormOptions.Options).length).toBe(4);
       expect(attestationFormOptions.Options[constants.FormNames.AGRISEAFOODOPSCREENING]).toBeTruthy();
+      expect(attestationFormOptions.Options[constants.FormNames.FARMOPSCREENING]).toBeTruthy();
       expect(attestationFormOptions.Options[constants.FormNames.FORESTRYSECTOROPSCREENING]).toBeTruthy();
       expect(attestationFormOptions.Options[constants.FormNames.MINESOPERATORSCREENING]).toBeTruthy();
       expect(attestationFormOptions.Options['xxx']).toBeUndefined();
