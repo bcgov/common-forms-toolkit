@@ -47,10 +47,9 @@ const Options = Object.freeze({
       ],
       docShortTitle: 'COVID-19 guidance for farms and farm workers',
       contact: {
-        head: 'The following contacts are available if you need assistance completing these risk assessment or infection prevention tasks:',
+        head: 'If you need assistance completing these risk assessment or infection prevention tasks, please contact AgSafe for help.',
         list: [
-          '<h4>Farm Operators contact</h4><p class="mb-0 pb-0">AgSafeBC<br />Toll-free: 1-877-533-1789<br />Email: <a href="mailto:Contact@AgSafeBC.ca" data-test="btn-form-contact-email-1">Contact@AgSafeBC.ca</a>',
-          '<h4>Seafood Operators contact</h4><p class="mb-0 pb-0">WorkSafeBC<br />Toll-free: 1-888-621-7233 (1-888-621-SAFE)<br />Email WorkSafeBC: <a target="_blank" href="https://gems.online.worksafebc.com/emailus?_ga=2.36658272.1710059602.1591993589-423167262.1587748063" data-test="btn-form-contact-email-2">Contact Us Form <i aria-hidden="true" class="v-icon notranslate material-icons theme--light primary--text" style="font-size: 16px;">open_in_new</i></a>'
+          '<h4>AgSafeBC</h4><p class="mb-0 pb-0">Toll-free: 1-877-533-1789<br />Email: <a href="mailto:Contact@AgSafeBC.ca" data-test="btn-form-contact-email-1">Contact@AgSafeBC.ca</a></p>',
         ]
       }
     }
