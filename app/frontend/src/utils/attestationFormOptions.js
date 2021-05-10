@@ -21,6 +21,7 @@ const Options = Object.freeze({
         },
       ],
       docShortTitle: 'COVID-19 guidance for farms and farm workers',
+      assessmentCheck: 'Have you worked through all the sections in <em>Protecting Farm Workers and Temporary Foreign Workers During the COVID-19 Pandemic</em> to identify the risks at your camps?',
       contact: {
         head: 'The following contacts are available if you need assistance completing these risk assessment or infection prevention tasks:',
         list: [
@@ -34,7 +35,7 @@ const Options = Object.freeze({
     operators: 'Farm Operators',
     landing: {
       header: 'Protecting Farm Workers and Temporary Foreign Workers During the COVID-19 Pandemic',
-      beforeStartInfo: 'If you employ <a href="https://www2.gov.bc.ca/gov/content/industry/agriculture-seafood/covid-19-response/temporary-foreign-farmworkers#inspections" target="_blank" data-test="btn-form-complete-site-inspection"> Temporary Foreign Workers and have already completed a site inspection, <i aria-hidden="true" class="v-icon notranslate material-icons theme--light primary--text">open_in_new</i> </a> you do not require a second inspection unless you are planning to use new accommodation sites that have never had an inspection.',
+      beforeStartInfo: null,
       pdfDocs: [
         {
           title: 'Protecting Farm Workers and Temporary Foreign Workers During the COVID-19 Pandemic',
@@ -46,6 +47,7 @@ const Options = Object.freeze({
         },
       ],
       docShortTitle: 'COVID-19 guidance for farms and farm workers',
+      assessmentCheck: 'Have you worked through all the sections in <em>Protecting Farm Workers and Temporary Foreign Workers During the COVID-19 Pandemic</em> to identify the risks at your farm?',
       contact: {
         head: 'If you need assistance completing these risk assessment or infection prevention tasks, please contact AgSafe for help.',
         list: [
@@ -69,6 +71,7 @@ const Options = Object.freeze({
         head: 'If you need assistance completing these risk assessment or infection prevention tasks, please email <a href="mailto:FP.Engagement@gov.bc.ca">FP.Engagement@gov.bc.ca</a>',
       }
     },
+    assessmentCheck: 'Have you worked through all the sections in COVID-19 Guidelines for Forestry Sector Work Camps to identify the risks at your camps?',
     submissionConfirmation: {
       notifyHealthAuth: {
         text: 'AS PART OF THE PRECAUTIONS TO PREVENT/CONTROL COVID-19, CAMP OPERATORS MUST NOTIFY RHA THAT THEY ARE OPERATING IN THE REGION. PLEASE FORWARD THE PDF COPY OF YOUR SUBMISSION TO THE RELEVANT HEALTH AUTHORITY.',
