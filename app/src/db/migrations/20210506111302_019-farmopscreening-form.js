@@ -108,8 +108,9 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return Promise.resolve()
-    .then(() => knex.schema.dropTableIfExists(`${PREFIX}_submission_location`))
-    .then(() => knex.schema.dropTableIfExists(`${PREFIX}_submission_contact`))
+    .then(() => knex.schema.dropTableIfExists(`${PREFIX}_submission_attestation`))
     .then(() => knex.schema.dropTableIfExists(`${PREFIX}_submission_business`))
-    .then(() => knex.schema.dropTableIfExists(`${PREFIX}_submission_attestation`));
+    .then(() => knex.schema.dropTableIfExists(`${PREFIX}_submission_contact`))
+    .then(() => knex.schema.dropTableIfExists(`${PREFIX}_submission_location`));
 };
+
