@@ -89,10 +89,7 @@
                           >Operators can take practical actions to reduce the risk of disease transmission (see section 7 of document).</p>
                         </BaseInfoCard>
 
-                        <p class="mt-5">
-                          Have you worked through all the sections in
-                          <em>{{ formOptions.landing.docShortTitle }}</em> to identify the risks at your camps?
-                        </p>
+                        <p class="mt-5" v-html="formOptions.landing.assessmentCheck"></p>
                       </v-expansion-panel-content>
                     </v-expansion-panel>
                   </v-expansion-panels>

@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 
 import comfort from './comfort';
 import agriSeafoodOpScreening from './agriSeafoodOpScreening';
+import farmOpScreening from './farmOpScreening';
 import forestrySectorOpScreening from './forestrySectorOpScreening';
 import minesOperatorScreening from './minesOperatorScreening';
 
@@ -23,6 +24,7 @@ export default function getRouter(basePath = '/') {
     routes: [
       ...comfort,
       ...agriSeafoodOpScreening,
+      ...farmOpScreening,
       ...forestrySectorOpScreening,
       ...minesOperatorScreening
     ]
