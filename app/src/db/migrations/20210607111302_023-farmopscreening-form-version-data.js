@@ -1,5 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
-
 const PREFIX = require('../../forms/attestations/farmopscreening/constants').PREFIX;
 const CREATED_BY = 'migration-023';
 

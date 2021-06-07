@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import commonFormService from '@/services/commonFormService';
 import { FormNames } from '@/utils/constants';
 import { SampleData, RandomCities } from './sampleData.js';
@@ -14,7 +16,21 @@ function transformToPost(state) {
   //   .map(([k, v]) => [k, v && typeof v === 'object' ? cleanEmpty(v) : v])
   //   .reduce((a, [k, v]) => (v === '' ? a : { ...a, [k]: v }), {});
 
-  const contacts = [copy.primaryContact];
+  // Sanitize the optional fields in case they get checked, filled out, unchecked
+  if (!copy.location.accTents) {
+    delete copy.location.tentDetails;
+  }
+  // if (!copy.location.accMotel) {
+  //   delete copy.location.motelName;
+  //   delete copy.location.motelAddressLine1;
+  //   delete copy.location.motelAddressLine2;
+  //   delete copy.location.motelCity;
+  //   delete copy.location.motelProvince;
+  //   delete copy.location.motelPostalCode;
+  // }
+
+  const contacts = [copy.primaryContact, copy.covidContact];
+  copy.location.numberOfWorkers = Number.parseInt(copy.location.numberOfWorkers, 10);
   const body = {
     type: copy.type,
     business: copy.business,
@@ -32,10 +48,14 @@ function transformToState(data) {
   const copy = JSON.parse(JSON.stringify(data));
 
   const primary = copy.contacts ? copy.contacts.find(({ contactType }) => contactType === 'PRIMARY') : {};
+  const covid = copy.contacts ? copy.contacts.find(({ contactType }) => contactType === 'COVID_COORDINATOR') : {};
+  copy.location.startDate = moment(copy.location.startDate).format('YYYY-MM-DD');
+  copy.location.endDate = moment(copy.location.endDate).format('YYYY-MM-DD');
   return {
     type: copy.operationType,
     business: copy.business,
     primaryContact: primary,
+    covidContact: covid,
     attestation: copy.attestation,
     location: copy.location
   };
@@ -51,7 +71,7 @@ export default {
     submissionComplete: false,
     submissionDetails: null,
     submissionError: '',
-
+    formVersionId: '',
     // Form schema
     // 'operation type' form field is hidden, default set
     type: 'AGRICULTURE',
@@ -71,6 +91,14 @@ export default {
       phone1: '',
       phone2: '',
       email: ''
+    },
+    covidContact: {
+      contactType: 'COVID_COORDINATOR',
+      firstName: 'default',
+      lastName: 'default',
+      phone1: '1234567',
+      phone2: '1234567',
+      email: 'default@example.com'
     },
     location: {
 
@@ -151,17 +179,22 @@ export default {
     submissionComplete: state => state.submissionComplete,
     submissionDetails: state => state.submissionDetails,
     submissionError: state => state.submissionError,
+    formVersionId: state => state.formVersionId,
 
     // Form objects
     operationType: state => state.type,
     business: state => state.business,
     primaryContact: state => state.primaryContact,
+    covidContact: state => state.covidContact,
     attestation: state => state.attestation,
     location: state => state.location
   },
   mutations: {
     setGetFormError(state, errorMessage) {
       state.getFormError = errorMessage;
+    },
+    setFormVersionId(state, formVersionId){
+      state.formVersionId = formVersionId;
     },
     setGettingForm(state, isGetting) {
       state.gettingForm = isGetting;
@@ -194,6 +227,9 @@ export default {
     updatePrimaryContact: (state, obj) => {
       Object.assign(state.primaryContact, obj);
     },
+    updateCovidContact: (state, obj) => {
+      Object.assign(state.covidContact, obj);
+    },
     updateAttestation: (state, obj) => {
       Object.assign(state.attestation, obj);
     },
@@ -215,9 +251,11 @@ export default {
         commit('updateAttestation', transformed.attestation);
         commit('updateBusiness', transformed.business);
         commit('updatePrimaryContact', transformed.primaryContact);
+        commit('updateCovidContact', transformed.covidContact);
         commit('updateLocation', transformed.location);
         commit('setOperationType', transformed.type ? transformed.type.display : '');
         commit('setSubmissionComplete');
+        commit('setFormVersionId', response.data.formVersionId);
       } catch (error) {
         console.error(`Error getting form: ${error}`); // eslint-disable-line no-console
         commit('setGetFormError', 'An error occurred while attempting to fetch details. Please refresh and try again.');
@@ -246,6 +284,7 @@ export default {
     async sampleData({ commit }) {
       commit('updateBusiness', SampleData.business);
       commit('updatePrimaryContact', SampleData.primaryContact);
+      commit('updateCovidContact', SampleData.covidContact);
       const l = SampleData.location;
       l.city = RandomCities[Math.floor(Math.random() * RandomCities.length)];
       commit('updateLocation', l);
