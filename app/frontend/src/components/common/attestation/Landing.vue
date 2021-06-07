@@ -17,7 +17,7 @@
             class="mb-8"
           >The Province of British Columbia has initiated emergency measures to slow the spread of COVID-19. {{ formOptions.operators }} must ensure a safe workplace for their workers and demonstrate proof of an Infection Prevention Control protocol (IPCP).</p>
 
-          <BaseImportantCard class="mt-6 mb-9">
+          <BaseImportantCard v-if="!formOptions.landing.oneSubmissionForManyLocations" class="mt-6 mb-9">
             <span>Important: This attestation form must be completed once for each accommodation location.</span>
           </BaseImportantCard>
 

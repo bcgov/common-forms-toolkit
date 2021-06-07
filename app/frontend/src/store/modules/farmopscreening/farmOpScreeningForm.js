@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import commonFormService from '@/services/commonFormService';
 import { FormNames } from '@/utils/constants';
 import { SampleData, RandomCities } from './sampleData.js';
@@ -16,21 +14,7 @@ function transformToPost(state) {
   //   .map(([k, v]) => [k, v && typeof v === 'object' ? cleanEmpty(v) : v])
   //   .reduce((a, [k, v]) => (v === '' ? a : { ...a, [k]: v }), {});
 
-  // Sanitize the optional fields in case they get checked, filled out, unchecked
-  if (!copy.location.accTents) {
-    delete copy.location.tentDetails;
-  }
-  if (!copy.location.accMotel) {
-    delete copy.location.motelName;
-    delete copy.location.motelAddressLine1;
-    delete copy.location.motelAddressLine2;
-    delete copy.location.motelCity;
-    delete copy.location.motelProvince;
-    delete copy.location.motelPostalCode;
-  }
-
-  const contacts = [copy.primaryContact, copy.covidContact];
-  copy.location.numberOfWorkers = Number.parseInt(copy.location.numberOfWorkers, 10);
+  const contacts = [copy.primaryContact];
   const body = {
     type: copy.type,
     business: copy.business,
@@ -48,14 +32,10 @@ function transformToState(data) {
   const copy = JSON.parse(JSON.stringify(data));
 
   const primary = copy.contacts ? copy.contacts.find(({ contactType }) => contactType === 'PRIMARY') : {};
-  const covid = copy.contacts ? copy.contacts.find(({ contactType }) => contactType === 'COVID_COORDINATOR') : {};
-  copy.location.startDate = moment(copy.location.startDate).format('YYYY-MM-DD');
-  copy.location.endDate = moment(copy.location.endDate).format('YYYY-MM-DD');
   return {
     type: copy.operationType,
     business: copy.business,
     primaryContact: primary,
-    covidContact: covid,
     attestation: copy.attestation,
     location: copy.location
   };
@@ -92,21 +72,14 @@ export default {
       phone2: '',
       email: ''
     },
-    covidContact: {
-      contactType: 'COVID_COORDINATOR',
-      firstName: '',
-      lastName: '',
-      phone1: '',
-      phone2: '',
-      email: ''
-    },
     location: {
-      startDate: '',
-      endDate: '',
-      city: '',
+
+      startDate: '2001-01-01',
+      endDate: '2002-02-02',
+      city: 'defaultCity',
       cityLatitude: undefined,
       cityLongitude: undefined,
-      numberOfWorkers: '',
+      numberOfWorkers: 1,
       accTents: false,
       tentDetails: '',
       accMotel: false,
@@ -116,7 +89,8 @@ export default {
       motelCity: '',
       motelProvince: '',
       motelPostalCode: '',
-      accWorkersHome: false
+      accWorkersHome: false,
+      motelAdditional: ''
     },
     attestation: {
       guidelinesRead: false,
@@ -182,7 +156,6 @@ export default {
     operationType: state => state.type,
     business: state => state.business,
     primaryContact: state => state.primaryContact,
-    covidContact: state => state.covidContact,
     attestation: state => state.attestation,
     location: state => state.location
   },
@@ -221,9 +194,6 @@ export default {
     updatePrimaryContact: (state, obj) => {
       Object.assign(state.primaryContact, obj);
     },
-    updateCovidContact: (state, obj) => {
-      Object.assign(state.covidContact, obj);
-    },
     updateAttestation: (state, obj) => {
       Object.assign(state.attestation, obj);
     },
@@ -245,7 +215,6 @@ export default {
         commit('updateAttestation', transformed.attestation);
         commit('updateBusiness', transformed.business);
         commit('updatePrimaryContact', transformed.primaryContact);
-        commit('updateCovidContact', transformed.covidContact);
         commit('updateLocation', transformed.location);
         commit('setOperationType', transformed.type ? transformed.type.display : '');
         commit('setSubmissionComplete');
@@ -277,7 +246,6 @@ export default {
     async sampleData({ commit }) {
       commit('updateBusiness', SampleData.business);
       commit('updatePrimaryContact', SampleData.primaryContact);
-      commit('updateCovidContact', SampleData.covidContact);
       const l = SampleData.location;
       l.city = RandomCities[Math.floor(Math.random() * RandomCities.length)];
       commit('updateLocation', l);

@@ -261,134 +261,13 @@
     </tbody>
   </table>
   <p class="Normal1">&nbsp;</p>
-  <h2>COVID-19 Coordinator</h2>
-  <p class="Normal1">It is important that your Co-Ordinator contributes to
-    and understands the Protocol that you are required to create to prevent
-    and control the transmission of COVID-19.</p>
-  <p class="Normal1">&nbsp;</p>
-  <table border="0" cellpadding="0"
-         cellspacing="0"
-         class="MsoTableGrid"
-         style="margin-left:30.6pt;border-collapse:collapse;border:none">
-    <tbody>
-    <tr>
-      <td style="width:183.75pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="245">
-        <p class="Normal1">First Name</p>
-      </td>
-      <td style="width:248.25pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="331">
-        <p class="Normal1">{d.contacts[i, contactType = 'COVID_COORDINATOR'].firstName}</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:183.75pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="245">
-        <p class="Normal1">Last Name</p>
-      </td>
-      <td style="width:248.25pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="331">
-        <p class="Normal1">{d.contacts[i, contactType = 'COVID_COORDINATOR'].lastName}</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:183.75pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="245">
-        <p class="Normal1">Cell Phone</p>
-      </td>
-      <td style="width:248.25pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="331">
-        <p class="Normal1">{d.contacts[i, contactType = 'COVID_COORDINATOR'].phone1}</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:183.75pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="245">
-        <p class="Normal1">Alternative Phone Number (optional)</p>
-      </td>
-      <td style="width:248.25pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="331">
-        <p class="Normal1">{d.contacts[i, contactType = 'COVID_COORDINATOR'].phone2}</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:183.75pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="245">
-        <p class="Normal1">E-mail Address (Primary Contact)</p>
-        <p class="Normal1">&nbsp;</p>
-        <p class="Normal1">&nbsp;</p>
-      </td>
-      <td style="width:248.25pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="331">
-        <p class="Normal1">{d.contacts[i, contactType = 'COVID_COORDINATOR'].email}</p>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <h2>Operation Details</h2>
-  <p class="Normal1">Provide your operation details</p>
+  <h2>Employer-provided Workplace or Housing Locations</h2>
   <p class="Normal1">&nbsp;</p>
   <table border="0" cellpadding="0"
          cellspacing="0"
          class="MsoTableGrid"
          style="margin-left:35.2pt;border-collapse:collapse;border:none">
     <tbody>
-    <tr>
-      <td style="width:191.35pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="255">
-        <p class="Normal1">Operation Start Date</p>
-      </td>
-      <td style="width:240.65pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="321">
-        <p class="Normal1">{d.location.startDate}</p>
-      </td>
-      <td style="border:none;padding:0cm 0cm 0cm 0cm" width="0">
-        <p class="MsoNormal">&nbsp;</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:191.35pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="255">
-        <p class="Normal1">Operation End Date</p>
-      </td>
-      <td style="width:240.65pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="321">
-        <p class="Normal1">{d.location.endDate}</p>
-      </td>
-      <td style="border:none;padding:0cm 0cm 0cm 0cm" width="0">
-        <p class="MsoNormal">&nbsp;</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:191.35pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="255">
-        <p class="Normal1">Closest Community</p>
-      </td>
-      <td style="width:240.65pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="321">
-        <p class="Normal1">{d.location.city}</p>
-      </td>
-      <td style="border:none;padding:0cm 0cm 0cm 0cm" width="0">
-        <p class="MsoNormal">&nbsp;</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:191.35pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="255">
-        <p class="MsoNormal">Number of Workers</p>
-      </td>
-      <td colspan="2" style="width:240.95pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top"
-          width="321">
-        <p class="MsoNormal">{d.location.numberOfWorkers}</p>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <p class="Normal1">&nbsp;</p>
-  <p class="Normal1"><b><span style="color:#4472C4">[{d.location.accTents:convTF()}]
-            </span></b>Tent or trailer sites</p>
-  <p class="Normal1">&nbsp;</p>
-  <p class="Normal1">Description of Location: {d.location.tentDetails}</p>
-  <p class="Normal1">&nbsp;</p>
-  <p class="Normal1"><b><span style="color:#4472C4">[{d.location.accMotel:convTF()}]</span></b>
-    Worker&#39;s lodging location (Motel, hotel, or other lodging)</p>
-  <p class="Normal1">&nbsp;</p>
-  <table border="0" cellpadding="0"
-         cellspacing="0"
-         class="MsoTableGrid"
-         style="margin-left:35.2pt;border-collapse:collapse;border:none">
-    <tbody>
-    <tr>
-      <td style="width:191.35pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="255">
-        <p class="Normal1">Motel Name</p>
-      </td>
-      <td style="width:240.65pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="321">
-        <p class="Normal1">{d.location.motelName}</p>
-      </td>
-    </tr>
     <tr>
       <td style="width:191.35pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="255">
         <p class="Normal1">Address line 1</p>
@@ -431,10 +310,27 @@
     </tr>
     </tbody>
   </table>
+
   <p class="Normal1">&nbsp;</p>
-  <p class="Normal1"><b><span style="color:#4472C4">[{d.location.accWorkersHome:convTF()}]</span></b>
-    Worker&#39;s home in community</p>
-  <p class="MsoNormal">&nbsp;</p>
+  <table border="0" cellpadding="0"
+         cellspacing="0"
+         class="MsoTableGrid"
+         style="margin-left:35.2pt;border-collapse:collapse;border:none">
+    <tbody>
+    <tr>
+      <td style="width:191.35pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="255">
+        <p class="Normal1">Additional Locations:</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="width:400pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="500">
+        <p class="Normal1">{d.location.motelAdditional}</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p class="Normal1">&nbsp;</p>
   <h1>2. Before operations begin, please check all that apply:</h1>
   <h2>1. COVID-19 Information</h2>
   <p class="MsoNormal">Industrial Camp operators need to make workers aware

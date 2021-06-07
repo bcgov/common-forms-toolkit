@@ -591,6 +591,7 @@ module.exports = {
   Business: Business,
   Contact: Contact,
   Location: Location,
+  LocationSchema: LocationSchema,
   LocationLicencees: LocationLicencees,
   LocationMines: LocationMines,
   Submission: Submission,
