@@ -188,9 +188,9 @@
         </v-row>
       </v-container>
 
-      <BaseHeaderSub v-if="formVersionId == 1" :text="'COVID-19 Coordinator'" />
+      <BaseHeaderSub v-if="formVersionId === 1" :text="'COVID-19 Coordinator'" />
 
-      <v-container v-if="formVersionId == 1">
+      <v-container v-if="formVersionId === 1">
         <v-row>
           <v-col cols="12" sm="6">
             <label>First Name</label>
@@ -264,7 +264,7 @@
 
       <BaseHeaderSub :text="'Employer-provided Housing Locations'" />
 
-      <template v-if="formVersionId == 1">
+      <template v-if="formVersionId === 1">
         <v-container class="pt-10">
           <v-row>
             <v-col cols="12" sm="6">
@@ -521,7 +521,7 @@
         </v-container>
       </template>
 
-      <template v-if="formVersionId != 1">
+      <template v-if="formVersionId !== 1">
 
         <BaseImportantCard class="mt-6 hide-on-review ">
           <span>Important: Please include all employer-provided housing locations, including locations that may not be ready for an inspection. If your Business address entered above is also an housing location, please re-enter it here. If you have more than one housing location, enter them into the 'Additional Locations' input box below.</span>
