@@ -17,17 +17,17 @@ function transformToPost(state) {
   //   .reduce((a, [k, v]) => (v === '' ? a : { ...a, [k]: v }), {});
 
   // Sanitize the optional fields in case they get checked, filled out, unchecked
-  if (!copy.location.accTents) {
-    delete copy.location.tentDetails;
-  }
-  if (!copy.location.accMotel) {
-    delete copy.location.motelName;
-    delete copy.location.motelAddressLine1;
-    delete copy.location.motelAddressLine2;
-    delete copy.location.motelCity;
-    delete copy.location.motelProvince;
-    delete copy.location.motelPostalCode;
-  }
+  // if (!copy.location.accTents) {
+  //   delete copy.location.tentDetails;
+  // }
+  // if (!copy.location.accMotel) {
+  //   delete copy.location.motelName;
+  //   delete copy.location.motelAddressLine1;
+  //   delete copy.location.motelAddressLine2;
+  //   delete copy.location.motelCity;
+  //   delete copy.location.motelProvince;
+  //   delete copy.location.motelPostalCode;
+  // }
 
   const contacts = [copy.primaryContact, copy.covidContact];
   copy.location.numberOfWorkers = Number.parseInt(copy.location.numberOfWorkers, 10);
@@ -71,7 +71,7 @@ export default {
     submissionComplete: false,
     submissionDetails: null,
     submissionError: '',
-
+    formVersionId: '',
     // Form schema
     // 'operation type' form field is hidden, default set
     type: 'AGRICULTURE',
@@ -94,19 +94,20 @@ export default {
     },
     covidContact: {
       contactType: 'COVID_COORDINATOR',
-      firstName: '',
-      lastName: '',
-      phone1: '',
-      phone2: '',
-      email: ''
+      firstName: 'default',
+      lastName: 'default',
+      phone1: '1234567',
+      phone2: '1234567',
+      email: 'default@example.com'
     },
     location: {
-      startDate: '',
-      endDate: '',
-      city: '',
+
+      startDate: '2001-01-01',
+      endDate: '2002-02-02',
+      city: 'defaultCity',
       cityLatitude: undefined,
       cityLongitude: undefined,
-      numberOfWorkers: '',
+      numberOfWorkers: 1,
       accTents: false,
       tentDetails: '',
       accMotel: false,
@@ -116,7 +117,8 @@ export default {
       motelCity: '',
       motelProvince: '',
       motelPostalCode: '',
-      accWorkersHome: false
+      accWorkersHome: false,
+      motelAdditional: ''
     },
     attestation: {
       guidelinesRead: false,
@@ -177,6 +179,7 @@ export default {
     submissionComplete: state => state.submissionComplete,
     submissionDetails: state => state.submissionDetails,
     submissionError: state => state.submissionError,
+    formVersionId: state => state.formVersionId,
 
     // Form objects
     operationType: state => state.type,
@@ -189,6 +192,9 @@ export default {
   mutations: {
     setGetFormError(state, errorMessage) {
       state.getFormError = errorMessage;
+    },
+    setFormVersionId(state, formVersionId){
+      state.formVersionId = formVersionId;
     },
     setGettingForm(state, isGetting) {
       state.gettingForm = isGetting;
@@ -249,6 +255,7 @@ export default {
         commit('updateLocation', transformed.location);
         commit('setOperationType', transformed.type ? transformed.type.display : '');
         commit('setSubmissionComplete');
+        commit('setFormVersionId', response.data.formVersionId);
       } catch (error) {
         console.error(`Error getting form: ${error}`); // eslint-disable-line no-console
         commit('setGetFormError', 'An error occurred while attempting to fetch details. Please refresh and try again.');

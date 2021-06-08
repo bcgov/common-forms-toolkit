@@ -36,6 +36,7 @@ const Options = Object.freeze({
     landing: {
       header: 'Protecting Farm Workers and Temporary Foreign Workers During the COVID-19 Pandemic',
       beforeStartInfo: null,
+      oneSubmissionForManyLocations: true,
       pdfDocs: [
         {
           title: 'Protecting Farm Workers and Temporary Foreign Workers During the COVID-19 Pandemic',

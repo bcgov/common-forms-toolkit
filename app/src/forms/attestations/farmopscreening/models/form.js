@@ -161,6 +161,24 @@ class Location extends AttestationModels.Location {
     return PREFIX;
   }
 
+  static get jsonSchema() {
+
+    const schemaProperties = {...AttestationModels.LocationSchema.properties};
+
+    // and add new properties
+    schemaProperties.motelAdditional = { type: 'text' };
+
+    return {
+      type: 'object',
+      required: ['submissionId'],
+      properties: {
+        ...schemaProperties,
+        ...CommonModels.stamps
+      },
+      additionalProperties: false
+    };
+  }
+
 }
 
 class SubmissionSearchView extends AttestationModels.SubmissionSearchView {
