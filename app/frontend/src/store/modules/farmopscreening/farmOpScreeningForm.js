@@ -17,9 +17,9 @@ function transformToPost(state) {
   //   .reduce((a, [k, v]) => (v === '' ? a : { ...a, [k]: v }), {});
 
   // Sanitize the optional fields in case they get checked, filled out, unchecked
-  if (!copy.location.accTents) {
-    delete copy.location.tentDetails;
-  }
+  // if (!copy.location.accTents) {
+  //   delete copy.location.tentDetails;
+  // }
   // if (!copy.location.accMotel) {
   //   delete copy.location.motelName;
   //   delete copy.location.motelAddressLine1;

@@ -1,6 +1,6 @@
 <template>
   <v-card outlined class="silv-important-card">
-    <v-card-text>
+    <v-card-text class="d-flex">
       <span class="icon">
         <v-icon>info</v-icon>
       </span>
