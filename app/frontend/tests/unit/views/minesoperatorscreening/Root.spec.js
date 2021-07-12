@@ -8,8 +8,8 @@ localVue.use(Vuetify);
 
 describe('Root.vue', () => {
   it('renders', () => {
-    const wrapper = shallowMount(Root, { localVue, stubs: ['Form']});
+    const wrapper = shallowMount(Root, { localVue, stubs: ['RedirectNotice']});
 
-    expect(wrapper.html()).toContain('form-stub');
+    expect(wrapper.html()).toContain('redirectnotice-stub');
   });
 });

@@ -1,13 +1,13 @@
 <template>
-  <Form />
+  <RedirectNotice />
 </template>
 
 <script>
-import Form from '@/components/minesoperatorscreening/Form.vue';
+import RedirectNotice from '@/components/minesoperatorscreening/RedirectNotice.vue';
 export default {
   name: 'MinesOperatorScreeningRoot',
   components: {
-    Form
+    RedirectNotice
   }
 };
 </script>
