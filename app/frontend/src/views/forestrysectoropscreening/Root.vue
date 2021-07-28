@@ -1,13 +1,13 @@
 <template>
-  <Form />
+  <RedirectNotice />
 </template>
 
 <script>
-import Form from '@/components/forestrysectoropscreening/Form.vue';
+import RedirectNotice from '@/components/forestrysectoropscreening/RedirectNotice.vue';
 export default {
   name: 'Root',
   components: {
-    Form
+    RedirectNotice
   }
 };
 </script>
