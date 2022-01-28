@@ -21,6 +21,7 @@ describe('BaseSecure.vue', () => {
   beforeAll(() => {
     delete window.location;
     window.location = {
+      pathname: '/',
       replace: mockReplace
     };
   });
